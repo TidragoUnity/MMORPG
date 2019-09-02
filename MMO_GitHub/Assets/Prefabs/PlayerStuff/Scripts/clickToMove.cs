@@ -46,7 +46,14 @@ public class clickToMove : MonoBehaviour
         {
             if (Physics.Raycast(ray, out hit, 100))
             {
-                mNavMeshAgent.destination = hit.point;
+                if(hit.transform.tag == "enemy")
+                {
+
+                }else
+                {
+                    mNavMeshAgent.destination = hit.point;
+
+                }
             }
         }
 

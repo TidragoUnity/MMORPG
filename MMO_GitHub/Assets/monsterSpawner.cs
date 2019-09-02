@@ -9,6 +9,8 @@ public class monsterSpawner : MonoBehaviour
     public Vector3 center;
     public Vector3 size;
     public Color color;
+
+    int mobCount;
     // Start is called before the first frame update
     void Start()
     {
@@ -23,9 +25,14 @@ public class monsterSpawner : MonoBehaviour
 
     public void Spawn()
     {
-        Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
+        if(mobCount < 10)
+        {
+            Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
 
-        Instantiate(prefab, pos, Quaternion.identity);
+            Instantiate(prefab, pos, Quaternion.identity);
+            mobCount++;
+        }
+
     }
 
     private void OnDrawGizmosSelected()
