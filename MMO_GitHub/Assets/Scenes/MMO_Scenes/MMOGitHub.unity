@@ -7663,6 +7663,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   otherInterfaces: {fileID: 1611187620}
+  clientManager: {fileID: 768367329}
 --- !u!1 &1937244861
 GameObject:
   m_ObjectHideFlags: 0

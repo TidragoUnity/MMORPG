@@ -8,11 +8,7 @@ public class Menu : MonoBehaviour
     public GameObject clientManager;
     private string ipAddress = "192.168.178.25";
     private int port = 5555;
-    private void Awake()
-    {
-        DontDestroyOnLoad(this);
 
-    }
     // Start is called before the first frame update
     void Start()
     {
