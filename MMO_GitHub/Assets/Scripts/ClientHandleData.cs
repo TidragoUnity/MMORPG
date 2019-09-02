@@ -41,10 +41,10 @@ public class ClientHandleData
         packetListener.Add((int)ServerPackages.SUpdatePosition, HandleUpdatePosition);
 
         informationOutput = GameObject.Find("InformationOutput").GetComponent<Text>();
-        playerGold        = GameObject.Find("Canvas/PlayerData/Gold").GetComponent<Text>();
-        playerExp         = GameObject.Find("Canvas/PlayerData/Exp").GetComponent<Text>();
-        playerLevel       = GameObject.Find("Canvas/PlayerData/Level").GetComponent<Text>();
-        playerHonor       = GameObject.Find("Canvas/PlayerData/Honor").GetComponent<Text>();
+        playerGold        = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Gold").GetComponent<Text>();
+        playerExp         = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Exp").GetComponent<Text>();
+        playerLevel       = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Level").GetComponent<Text>();
+        playerHonor       = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Honor").GetComponent<Text>();
 
     }
 

@@ -10,56 +10,24 @@ public class ClientManager : MonoBehaviour
     private void Awake()
     {
 
-
+        // Wurde in Menu eingebaut
+        
         DontDestroyOnLoad(this);
         UnityThread.initUnityThread();
 
         ClientHandleData.InitializePacketListener();
         ClientTCP.InitializeClientSocket(ipAddress, port);
+        
     }
-    // Start is called before the first frame update
-    void Start()
+
+    public string GetIpAddress()
     {
+        return ipAddress;
     }
-
-    // Update is called once per frame
-    void Update()
+    public int GetPort()
     {
-
-
-
+        return port;
     }
-
-    /*
-    void SMove()
-    {
-        while (true)
-        {
-            if (ClientHandleData.LoggedIn){
-                player = GameObject.Find("Player(Clone)");
-                if (player != null){
-                    for (int i = 0; i < 200; i++){
-                        if (i == 100)
-                        {
-                            Debug.Log(Mathf.Round(player.transform.position.x).ToString() + "  " + Mathf.Round(player.transform.position.y).ToString() + "  " + Mathf.Round(player.transform.position.z).ToString());
-                            ClientTCP.PACKAGE_SendMovement(Mathf.Round(player.transform.position.x).ToString(), Mathf.Round(player.transform.position.y).ToString(), Mathf.Round(player.transform.position.z).ToString());
-                            i = 0;
-                        }
-                        else
-                        {
-                            Debug.Log(i); i++; return;
-                        }
-
-
-                    }
-
-
-
-                }
-            }
-
-        }
-    }
-    */
+    
 }
 
