@@ -5,6 +5,7 @@ using UnityEngine.AI;
 
 public class clickToMove : MonoBehaviour
 {
+    int i = 0;
     private string oldX, oldY, oldZ;
     private NavMeshAgent mNavMeshAgent;
     private float x, y, z;
@@ -21,7 +22,17 @@ public class clickToMove : MonoBehaviour
     {
         
         Move();
-        SendXYZ();
+        if(i > 30)
+        {
+            SendXYZ();
+            i = 0;
+        }
+        else
+        {
+            i++;
+        }
+
+
 
     }
 
@@ -33,93 +44,22 @@ public class clickToMove : MonoBehaviour
 
         if (Input.GetMouseButtonDown(0))
         {
-            if(Physics.Raycast(ray, out hit, 100))
+            if (Physics.Raycast(ray, out hit, 100))
             {
                 mNavMeshAgent.destination = hit.point;
             }
         }
 
-        if(mNavMeshAgent.remainingDistance <= mNavMeshAgent.stoppingDistance)
+        if (mNavMeshAgent.remainingDistance <= mNavMeshAgent.stoppingDistance)
         {
-          //  SendPosition();
+            //  SendPosition();
         }
         else
         {
 
         }
-
-
     }
-    private void SendPosition()
-    {
-        /*
 
-        if (OnlinePlayers.isSpawned)
-        {
-            GameObject player = GameObject.Find("Player(Clone)");
-            string x = Mathf.Round(player.transform.position.x).ToString();
-            string y = Mathf.Round(player.transform.position.y).ToString();
-            string z = Mathf.Round(player.transform.position.z).ToString();
-
-
-
-            if(!string.Equals(oldX,x)||!string.Equals(oldY,y)||!string.Equals(oldZ, z))
-            {
-                Debug.Log(x + "  " + y + "  " + z);
-                ClientTCP.PACKAGE_SendMovement(x, y, z);
-                oldX = x;
-                oldY = y;
-                oldZ = z;          
-            }
-            else
-            {
-                return;
-            }
-
-            /*
-            if(string.Equals(oldX, x))
-            {
-                return;
-            }
-            else
-            {
-                ClientTCP.PACKAGE_SendMovement(x, y, z);
-                oldX = x;
-
-
-
-            }
-            if (string.Equals(oldY, y))
-            {
-                return;
-            }
-            else
-            {
-                    ClientTCP.PACKAGE_SendMovement(x, y, z);
-                    oldY = y;
-
-
-            }
-            if (string.Equals(oldZ, z))
-            {
-
-                return;
-
-
-            }
-            else
-            {
-                ClientTCP.PACKAGE_SendMovement(x, y, z);
-                oldZ = z;
-
-            }
-            Debug.Log(x + "  " + y + "  " + z);
-            
-
-        }
-    */
-        
-    }
     private void SendXYZ()
     {
         x = transform.position.x;
