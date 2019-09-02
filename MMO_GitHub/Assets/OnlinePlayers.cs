@@ -35,9 +35,21 @@ public class OnlinePlayers : MonoBehaviour
     }
     public static void SpawnPlayer(float x, float y, float z, string username)
     {
-        vec3 = new Vector3(x, y, z);
-        player.name = username;
-        Instantiate(player, vec3, Quaternion.identity);
-        if (isSpawned != true) isSpawned = true;
+        try
+        {
+            vec3 = new Vector3(x, y, z);
+            player.name = username;
+            Instantiate(player, vec3, Quaternion.identity);
+            if (isSpawned != true) isSpawned = true;
+        }
+        catch (System.Exception)
+        {
+            vec3 = new Vector3(x, y, z);
+            player.name = username;
+            Instantiate(player, vec3, Quaternion.identity);
+            if (isSpawned != true) isSpawned = true;
+            throw;
+        }
+
     }
 }

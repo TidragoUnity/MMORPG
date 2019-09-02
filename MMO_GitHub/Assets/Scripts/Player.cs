@@ -25,16 +25,6 @@ public class Player : MonoBehaviour
 
     }
 
-    private void PlayerInventory()
-    {
-
-    }
-    private void Equipment()
-    {
-
-    }
-
-
     void MousePosition()
     {
         RaycastHit hit;
@@ -53,15 +43,6 @@ public class Player : MonoBehaviour
             }
 
         }
-
-        void MovePlayer(float x, float y, float z)
-        {
-            player.transform.position = new Vector3(x, y, z);
-            ClientHandleData.informationOutput.text = "Trying to send Position to the Server";
-        }
-
-
-
 
     }
     private void SendXYZ()
