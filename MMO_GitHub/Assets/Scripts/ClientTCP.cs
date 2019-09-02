@@ -1,7 +1,8 @@
 ﻿using System;
 using System.Net.Sockets;
+using UnityEngine;
 
-public class ClientTCP
+public class ClientTCP 
 {
 
     private static TcpClient clientSocket;
@@ -15,7 +16,9 @@ public class ClientTCP
         clientSocket.SendBufferSize = 4096;
         receiveBuffer = new byte[2 * 4096];
         clientSocket.BeginConnect(adress, port, new AsyncCallback(ClientConnectCallback), clientSocket);
+
     }
+
 
     private static void ClientConnectCallback(IAsyncResult result)
     {

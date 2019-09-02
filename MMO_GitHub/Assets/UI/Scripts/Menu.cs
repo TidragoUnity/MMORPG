@@ -5,6 +5,9 @@ using UnityEngine;
 public class Menu : MonoBehaviour
 {
     public GameObject otherInterfaces;
+    public GameObject clientManager;
+    private string ipAddress = "192.168.178.25";
+    private int port = 5555;
     private void Awake()
     {
         DontDestroyOnLoad(this);
@@ -29,12 +32,7 @@ public class Menu : MonoBehaviour
         otherInterfaces.SetActive(true);
         menuPanel.SetActive(false);
 
-        ClientManager manager = new ClientManager();
-        string ipAddress = manager.GetIpAddress();
-        int port = manager.GetPort();
-
-        UnityThread.initUnityThread(); 
-
+        UnityThread.initUnityThread();
         ClientHandleData.InitializePacketListener();
         ClientTCP.InitializeClientSocket(ipAddress, port);
     }
