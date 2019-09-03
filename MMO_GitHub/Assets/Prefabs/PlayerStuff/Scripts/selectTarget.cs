@@ -1,11 +1,13 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class selectTarget : MonoBehaviour
 {
     public GameObject target;
     public GameObject target_;
+    public GameObject SelcetedUI;
     void Start()
     {
         
@@ -14,11 +16,21 @@ public class selectTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        if(target_ == null)
+        {
+            if(target == null)
+            {
+               
+            }
+
+        }
         if(target != target_)
         {
-            if(target_ == null)
+
+            if (target_ == null)
             {
                 target.GetComponent<clickable>().isSelected = true ;
+
                 target_ = target;
             }
             target_.GetComponent<clickable>().isSelected = false;
