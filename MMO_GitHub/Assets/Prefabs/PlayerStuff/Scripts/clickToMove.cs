@@ -22,7 +22,7 @@ public class clickToMove : MonoBehaviour
     {
         
         Move();
-        if(i > 30)
+        if(i > 8)
         {
             SendXYZ();
             i = 0;
