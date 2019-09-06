@@ -29,7 +29,10 @@ public class monsterSpawner : MonoBehaviour
         {
             Vector3 pos = center + new Vector3(Random.Range(-size.x / 2, size.x / 2), Random.Range(-size.y / 2, size.y / 2), Random.Range(-size.z / 2, size.z / 2));
 
-            Instantiate(prefab, pos, Quaternion.identity);
+           // Instantiate(prefab, pos, Quaternion.identity);
+           GameObject t = ((GameObject)Instantiate(prefab, pos, Quaternion.identity));
+           t.transform.parent = transform;
+
             mobCount++;
         }
 
