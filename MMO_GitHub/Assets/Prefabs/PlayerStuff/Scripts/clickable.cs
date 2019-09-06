@@ -19,8 +19,11 @@ public class clickable : MonoBehaviour
 
         player.GetComponent<selectTarget>().target = this.gameObject;
         Image Icon = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Icon").GetComponent<Image>();
-      
-        Icon.GetComponent<Image>().sprite = icon;
+ 
+         Icon.GetComponent<Image>().sprite = icon;
+        Text targetName = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Text").GetComponent<Text>();
+        targetName.text = this.gameObject.name;
+
     }
     // Start is called before the first frame update
 
