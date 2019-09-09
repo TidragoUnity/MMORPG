@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 793}
   - component: {fileID: 818}
   - component: {fileID: 820}
+  - component: {fileID: 8494672823352675696}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -161,3 +162,17 @@ MonoBehaviour:
   target: {fileID: 0}
   target_: {fileID: 0}
   SelcetedUI: {fileID: 0}
+--- !u!114 &8494672823352675696
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1499817329951b74791deef9e1199bac, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
+  isSelected: 0
