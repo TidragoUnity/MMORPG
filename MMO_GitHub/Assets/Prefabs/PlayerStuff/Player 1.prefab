@@ -16,6 +16,7 @@ GameObject:
   - component: {fileID: 553}
   - component: {fileID: 577}
   - component: {fileID: 4242588638457522332}
+  - component: {fileID: -2242628870852819332}
   m_Layer: 0
   m_Name: Player 1
   m_TagString: Player
@@ -70,6 +71,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -161,3 +163,15 @@ MonoBehaviour:
   target: {fileID: 0}
   target_: {fileID: 0}
   SelcetedUI: {fileID: 0}
+--- !u!114 &-2242628870852819332
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 354}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc66399db2a04894ebf3d76d772de716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

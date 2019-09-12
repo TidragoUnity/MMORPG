@@ -73,6 +73,6 @@ public class clickToMove : MonoBehaviour
         y = transform.position.y;
         z = transform.position.z;
         ClientTCP.PACKAGE_SendMovement(x, y, z);
-        Debug.Log(x + " " + y + "  " + z);
+
     }
 }

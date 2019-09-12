@@ -17,6 +17,7 @@ GameObject:
   - component: {fileID: 818}
   - component: {fileID: 820}
   - component: {fileID: 8494672823352675696}
+  - component: {fileID: -8389895889979059968}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -71,6 +72,7 @@ MeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0
@@ -176,3 +178,16 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
   isSelected: 0
+--- !u!114 &-8389895889979059968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: dc66399db2a04894ebf3d76d772de716, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  selectedObject: {fileID: 0}
