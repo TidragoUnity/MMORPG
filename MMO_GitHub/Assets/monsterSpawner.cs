@@ -6,9 +6,12 @@ public class monsterSpawner : MonoBehaviour
 {
     public GameObject prefab;
 
+    
     public Vector3 center;
     public Vector3 size;
     public Color color;
+
+
 
     int mobCount;
     // Start is called before the first frame update
@@ -21,6 +24,11 @@ public class monsterSpawner : MonoBehaviour
     void Update()
     {
         if (Input.GetKey(KeyCode.Q)) Spawn(); return;
+
+    }
+    private void FixedUpdate()
+    {
+        mobCount = transform.childCount;
     }
 
     public void Spawn()

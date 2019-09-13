@@ -203,6 +203,7 @@ GameObject:
   - component: {fileID: 6194930237819333362}
   - component: {fileID: 6511117283197820562}
   - component: {fileID: 4345267465083293000}
+  - component: {fileID: -1711425193855196970}
   m_Layer: 0
   m_Name: TrollGiant
   m_TagString: enemy
@@ -319,6 +320,20 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   icon: {fileID: 21300000, guid: 69ae95bdfc828154085b1dc850097275, type: 3}
   isSelected: 0
+--- !u!114 &-1711425193855196970
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010759127040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fe492716e545f48a7b79e39ff873e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Healthbar: {fileID: 0}
+  Health: 80
 --- !u!1 &1000010801686436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1088,6 +1103,7 @@ SkinnedMeshRenderer:
   m_ProbeAnchor: {fileID: 0}
   m_LightProbeVolumeOverride: {fileID: 0}
   m_ScaleInLightmap: 1
+  m_ReceiveGI: 1
   m_PreserveUVs: 0
   m_IgnoreNormalsForChartDetection: 0
   m_ImportantGI: 0

@@ -44,4 +44,14 @@ public class BarSrcipt : MonoBehaviour
 
         return (value - inMin)*(outMax - outMin) / (inMax- inMin)+ outMin;
     }
+
+    public float MapHealth(float value, float inMin, float inMax,float outMin, float outMax)
+    {
+        return (value - inMin) * (outMax - outMin) / (inMax - inMin) + outMin;
+    }
+    public void ChangeValue(float value)
+    {
+        fillAmount = value;
+    }
+
 }

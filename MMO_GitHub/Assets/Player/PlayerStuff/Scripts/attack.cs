@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class attack : MonoBehaviour
 {
+    bool pressed;
     [SerializeField]
     int damage;
     // Start is called before the first frame update
@@ -18,6 +19,7 @@ public class attack : MonoBehaviour
         if (Input.GetKeyDown("1"))
         {
             Attack(selectTarget.currentTarget);
+            return;
         }
 
     }
