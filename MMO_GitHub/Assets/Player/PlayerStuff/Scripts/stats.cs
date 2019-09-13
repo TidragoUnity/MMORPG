@@ -2,10 +2,10 @@
 using System.Collections.Generic;
 using UnityEngine;
 
-public class attack : MonoBehaviour
+public class stats : MonoBehaviour
 {
     [SerializeField]
-    int damage;
+    private int Health = 300;
     // Start is called before the first frame update
     void Start()
     {
@@ -15,17 +15,15 @@ public class attack : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("1"))
-        {
-            Attack(selectTarget.currentTarget);
-        }
-
+        
     }
 
-
-    void Attack(GameObject obj)
+    int GetHealth()
     {
-        obj.GetComponent<stats>().changeHealth(damage);
-
+        return Health;
+    }
+    public void changeHealth(int value)
+    {
+        Health -= value;
     }
 }

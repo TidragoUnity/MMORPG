@@ -450,6 +450,7 @@ GameObject:
   - component: {fileID: 5193406226508353678}
   - component: {fileID: 4042836037119115011}
   - component: {fileID: 4463033716347681774}
+  - component: {fileID: 6816411966191934744}
   m_Layer: 0
   m_Name: GhostTiger 1
   m_TagString: enemy
@@ -558,6 +559,19 @@ CapsuleCollider:
   m_Height: 2.44
   m_Direction: 1
   m_Center: {x: 0, y: 1.24, z: 0}
+--- !u!114 &6816411966191934744
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3987661692461127960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fe492716e545f48a7b79e39ff873e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 300
 --- !u!1 &3991332628107155933
 GameObject:
   m_ObjectHideFlags: 0

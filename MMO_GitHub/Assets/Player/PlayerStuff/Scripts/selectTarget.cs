@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class selectTarget : MonoBehaviour
+public  class selectTarget : MonoBehaviour
 {
     public GameObject target;
     public GameObject target_;
     public GameObject SelcetedUI;
+    public static GameObject currentTarget;
     void Start()
     {
         
@@ -32,11 +33,14 @@ public class selectTarget : MonoBehaviour
                 target.GetComponent<clickable>().isSelected = true ;
 
                 target_ = target;
+                currentTarget= target;
             }
             target_.GetComponent<clickable>().isSelected = false;
                 target_ = target;
+               currentTarget = target;
                 target_.GetComponent<clickable>().isSelected = true;        
         }
+
 
     }
 }
