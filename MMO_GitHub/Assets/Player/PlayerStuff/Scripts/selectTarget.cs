@@ -31,16 +31,25 @@ public  class selectTarget : MonoBehaviour
             if (target_ == null)
             {
                 target.GetComponent<clickable>().isSelected = true ;
-
+                target.GetComponent<stats>().UpdateHealthbar();
                 target_ = target;
                 currentTarget= target;
             }
             target_.GetComponent<clickable>().isSelected = false;
                 target_ = target;
-               currentTarget = target;
-                target_.GetComponent<clickable>().isSelected = true;        
+            target.GetComponent<stats>().UpdateHealthbar();
+            currentTarget = target;
+                target_.GetComponent<clickable>().isSelected = true;
+
         }
 
+
+    }
+
+    void UpdateBar()
+    {
+        GameObject HealthBar = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar");
+        HealthBar.GetComponent<stats>().UpdateHealthbar();
 
     }
 }

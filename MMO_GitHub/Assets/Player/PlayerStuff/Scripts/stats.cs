@@ -5,14 +5,22 @@ using UnityEngine.UI;
 
 public class stats : MonoBehaviour
 {
-     GameObject Healthbar;
+    GameObject Healthbar;
     [SerializeField]
     private int Health;
+    [SerializeField]
     private int MaxHealth;
+    [SerializeField]
+    private int dropXP;
+    [SerializeField]
+    private int dropGold;
+    [SerializeField]
+    private int dropHonor;
+
     // Start is called before the first frame update
     void Start()
     {
-        MaxHealth = Health;
+        Health = MaxHealth;
     }
 
     // Update is called once per frame
@@ -20,7 +28,14 @@ public class stats : MonoBehaviour
     {
         if( Health <= 0)
         {
+            if(gameObject.tag == "player")
+            {
+                Debug.Log("You died!");
+                Health = MaxHealth;
+                return;
+            }
             GameObject.Destroy(gameObject);
+
         }
     }
 
@@ -41,5 +56,17 @@ public class stats : MonoBehaviour
         Text healthText = HealthbarText.GetComponent<Text>();
         healthText.text = " " + Health + " / " + MaxHealth;
 
+    }
+
+    public void UpdateHealthbar()
+    {
+        GameObject HealthbarUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar");
+        BarSrcipt scriptUpdate = HealthbarUpdate.GetComponent<BarSrcipt>();
+        scriptUpdate.MaxValue = MaxHealth;
+        scriptUpdate.ChangeValue(scriptUpdate.MapHealth(Health, 0, MaxHealth, 0, 1));
+
+        GameObject HealthbarTextUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Mask/Text");
+        Text healthText = HealthbarTextUpdate.GetComponent<Text>();
+        healthText.text = " " + Health + " / " + MaxHealth;
     }
 }

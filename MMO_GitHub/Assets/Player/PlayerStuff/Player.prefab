@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 8494672823352675696}
   - component: {fileID: -8389895889979059968}
   - component: {fileID: -748112543185433942}
+  - component: {fileID: -7102958249992440567}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -205,3 +206,20 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 10
+--- !u!114 &-7102958249992440567
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 371}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c0fe492716e545f48a7b79e39ff873e5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  Health: 0
+  MaxHealth: 100
+  dropXP: 0
+  dropGold: 0
+  dropHonor: 0

@@ -27,7 +27,20 @@ public class attack : MonoBehaviour
 
     void Attack(GameObject obj)
     {
-        obj.GetComponent<stats>().changeHealth(damage);
+        try
+        {
+            if(obj != null)
+            {
+                obj.GetComponent<stats>().changeHealth(damage);
+
+            }
+
+        }
+        catch (System.Exception)
+        {
+
+            throw;
+        }
 
     }
 }
