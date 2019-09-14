@@ -11,7 +11,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/SampleScene.unity
     guid: 3568200ea982276438f62d170c092d0d
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MMO_Scenes/MMOGitHub.unity
     guid: 3cb4ffa71392635429d232c7ebd8b057
+  - enabled: 1
+    path: Assets/Scenes/MMO_Scenes/MMO_VillageStart.unity
+    guid: 4f76aa4c5c441444eb82b626329736b7
   m_configObjects: {}
