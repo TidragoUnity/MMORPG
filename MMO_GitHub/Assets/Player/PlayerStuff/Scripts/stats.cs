@@ -28,10 +28,12 @@ public class stats : MonoBehaviour
     {
         if( Health <= 0)
         {
-            if(gameObject.tag == "player")
+            if(gameObject.tag == "Player")
             {
                 Debug.Log("You died!");
                 Health = MaxHealth;
+                gameObject.transform.position = new Vector3(255, 31, 215);
+
                 return;
             }
             GameObject.Destroy(gameObject);
