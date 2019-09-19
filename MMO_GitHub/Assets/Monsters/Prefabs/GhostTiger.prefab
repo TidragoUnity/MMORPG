@@ -452,7 +452,7 @@ GameObject:
   - component: {fileID: 4463033716347681774}
   - component: {fileID: 6816411966191934744}
   m_Layer: 0
-  m_Name: GhostTiger 1
+  m_Name: GhostTiger
   m_TagString: enemy
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -571,7 +571,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c0fe492716e545f48a7b79e39ff873e5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Health: 0
   MaxHealth: 210
+  dropXP: 0
+  dropGold: 0
+  dropHonor: 0
 --- !u!1 &3991332628107155933
 GameObject:
   m_ObjectHideFlags: 0

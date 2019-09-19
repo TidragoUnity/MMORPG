@@ -39,7 +39,7 @@ public class ClientHandleData
         packetListener.Add((int)ServerPackages.SSpawnTheOthers, HandleTheOthers);
         packetListener.Add((int)ServerPackages.SDespawn, HandleDespawn);
         packetListener.Add((int)ServerPackages.SUpdatePosition, HandleUpdatePosition);
-        packetListener.Add((int)ServerPackages.SReceiveDrops, HandleDrops);
+        packetListener.Add((int)ServerPackages.SSendDrops, HandleDrops);
 
         informationOutput = GameObject.Find("InformationOutput").GetComponent<Text>();
         playerGold        = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Gold").GetComponent<Text>();

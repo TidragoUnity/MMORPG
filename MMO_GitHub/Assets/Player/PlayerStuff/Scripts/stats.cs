@@ -36,6 +36,11 @@ public class stats : MonoBehaviour
 
                 return;
             }
+            string mobName = transform.name;
+
+            mobName = mobName.Replace("(Clone)", "");
+            Debug.Log(mobName);
+            mobDrop(mobName);
             GameObject.Destroy(gameObject);
 
         }
