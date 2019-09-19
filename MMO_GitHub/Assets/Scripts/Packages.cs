@@ -9,6 +9,7 @@
     SSpawnTheOthers,
     SDespawn,
     SUpdatePosition,
+    SReceiveDrops,
 
 }
 
@@ -19,6 +20,7 @@ public enum ClientPackages
     CNewAccount,
     CLogout,
     CSendMovement,
+    CSendDrops,
 
 
 }

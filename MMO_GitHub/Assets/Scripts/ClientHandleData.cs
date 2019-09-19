@@ -39,6 +39,7 @@ public class ClientHandleData
         packetListener.Add((int)ServerPackages.SSpawnTheOthers, HandleTheOthers);
         packetListener.Add((int)ServerPackages.SDespawn, HandleDespawn);
         packetListener.Add((int)ServerPackages.SUpdatePosition, HandleUpdatePosition);
+        packetListener.Add((int)ServerPackages.SReceiveDrops, HandleDrops);
 
         informationOutput = GameObject.Find("InformationOutput").GetComponent<Text>();
         playerGold        = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Gold").GetComponent<Text>();
@@ -241,6 +242,7 @@ public class ClientHandleData
             {
                 GameObject user = GameObject.Find(username + ("(Clone)"));
                 user.transform.position = new Vector3(x, y, z);
+                buffer.Dispose();
             }
             catch (Exception)
             {
@@ -249,8 +251,26 @@ public class ClientHandleData
             }
 
 
-            Debug.Log(username);
         }
+        buffer.Dispose();
+    }
+    private static void HandleDrops(byte[] data)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteBytes(data);
+        int packageID = buffer.ReadInteger();
+        int gold = buffer.ReadInteger();
+        int xp = buffer.ReadInteger();
+        int level = buffer.ReadInteger();
+        int honor = buffer.ReadInteger();
+        buffer.Dispose();
+    
+        playerGold.text = "Gold: " + gold; ;
+        playerExp.text = "Experience: " + xp;
+        playerLevel.text = "Level: " + level;
+        playerHonor.text = "Honor: " + honor;
+        Debug.Log("gold: " + gold + "exp: " + xp + "level: " + level + "honor: " + honor);
+
     }
     #endregion
 

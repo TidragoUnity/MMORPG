@@ -59,7 +59,6 @@ public class stats : MonoBehaviour
         healthText.text = " " + Health + " / " + MaxHealth;
 
     }
-
     public void UpdateHealthbar()
     {
         GameObject HealthbarUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar");
@@ -71,4 +70,15 @@ public class stats : MonoBehaviour
         Text healthText = HealthbarTextUpdate.GetComponent<Text>();
         healthText.text = " " + Health + " / " + MaxHealth;
     }
+
+
+#region Drops
+
+    void mobDrop(string mobname)
+    {
+
+        ClientTCP.PACKAGE_SendDrops(mobname);
+    }
+
+#endregion
 }
