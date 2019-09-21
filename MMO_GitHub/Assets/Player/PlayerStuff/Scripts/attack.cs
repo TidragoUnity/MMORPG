@@ -9,7 +9,7 @@ public class attack : MonoBehaviour
     int damage;
 
     float timer = 0.0f;
-    float waitTime = 2.1f;
+    float waitTime = 1.9f;
 
     public static Animator anim;
 
@@ -23,20 +23,24 @@ public class attack : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (timer > waitTime)
+        if (clickToMove.InAttackRange)
         {
-            if (Input.GetKeyDown("1"))
+            if (timer > waitTime)
             {
+                if (Input.GetKeyDown("1"))
+                {
 
-                Attack(selectTarget.currentTarget);
-                anim.SetBool("IsWalking", false);
-                anim.SetBool("IsAttacking", true);
-                timer = 0;
+                    Attack(selectTarget.currentTarget);
+                    anim.SetBool("IsWalking", false);
+                    anim.SetBool("IsAttacking", true);
+                    timer = 0;
 
 
-                return;
+                    return;
+                }
             }
         }
+
         anim.SetBool("IsAttacking", false);
 
 
