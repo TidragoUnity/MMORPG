@@ -20,10 +20,15 @@ public class CameraController : MonoBehaviour
             X = transform.rotation.eulerAngles.x;
             Y = transform.rotation.eulerAngles.y;
             transform.rotation = Quaternion.Euler(X, Y, 0);
+            transform.position = new Vector3(player.transform.position.x, player.transform.position.y + 3, player.transform.position.z - 3);
         }
         follow();
         if (changeCamera && !changedCamera)
         {
+            Camera cam = gameObject.GetComponent<Camera>();
+            cam = Camera.main;
+            Camera oldCam = GameObject.Find("MenuCamera").GetComponent<Camera>();
+            oldCam.gameObject.SetActive(false);
             player = GameObject.Find("Player(Clone)");
             changedCamera = true;
         }

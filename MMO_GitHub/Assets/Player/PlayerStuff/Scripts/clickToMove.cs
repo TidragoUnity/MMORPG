@@ -9,12 +9,16 @@ public class clickToMove : MonoBehaviour
     private string oldX, oldY, oldZ;
     private NavMeshAgent mNavMeshAgent;
     private float x, y, z;
+    public Camera cam;
+
+    public static Animator anim;
 
 
     // Start is called before the first frame update
     void Start()
     {
         mNavMeshAgent = GetComponent<NavMeshAgent>();
+        anim = GetComponent<Animator>();
     }
 
     // Update is called once per frame
@@ -38,28 +42,31 @@ public class clickToMove : MonoBehaviour
 
     private void Move()
     {
-        Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
-
+        //Ray ray = Camera.main.ScreenPointToRay(Input.mousePosition);
+        Ray ray = cam.ScreenPointToRay(Input.mousePosition);
         RaycastHit hit;
 
         if (Input.GetMouseButtonDown(0))
         {
             if (Physics.Raycast(ray, out hit, 100))
             {
-                if(hit.transform.tag == "enemy")
-                {
-
-                }else
+                if(hit.transform.tag == "floor")
                 {
                     mNavMeshAgent.destination = hit.point;
 
                 }
+                else
+                {
+
+                }
             }
         }
+        anim.SetBool("IsWalking", true);
 
         if (mNavMeshAgent.remainingDistance <= mNavMeshAgent.stoppingDistance)
         {
-            //  SendPosition();
+            anim.SetBool("IsWalking", false);
+
         }
         else
         {

@@ -184,7 +184,8 @@ public class ClientHandleData
         string y = buffer.ReadString();
         string z = buffer.ReadString();
         OnlinePlayers.SpawnPlayer(float.Parse(x), float.Parse(y), float.Parse(z), "Player");
-        CameraController.changeCamera = true;
+        //CameraController.changeCamera = true;
+        RotateCam.changeCamera = true;
         GameObject player = GameObject.Find("Player(Clone)");
         player.GetComponent<clickToMove>().enabled = true;
         buffer.Dispose();

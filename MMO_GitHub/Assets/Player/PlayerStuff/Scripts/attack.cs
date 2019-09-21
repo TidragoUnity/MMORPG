@@ -7,20 +7,38 @@ public class attack : MonoBehaviour
     bool pressed;
     [SerializeField]
     int damage;
+
+    float timer = 0.0f;
+    float waitTime = 2.1f;
+
+    public static Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
-        
+        anim =GetComponent<Animator>();
     }
 
     // Update is called once per frame
     void Update()
     {
-        if (Input.GetKeyDown("1"))
+        timer += Time.deltaTime;
+        if (timer > waitTime)
         {
-            Attack(selectTarget.currentTarget);
-            return;
+            if (Input.GetKeyDown("1"))
+            {
+
+                Attack(selectTarget.currentTarget);
+                anim.SetBool("IsWalking", false);
+                anim.SetBool("IsAttacking", true);
+                timer = 0;
+
+
+                return;
+            }
         }
+        anim.SetBool("IsAttacking", false);
+
 
     }
 
