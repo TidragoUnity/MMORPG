@@ -9,7 +9,6 @@ public class clickToMove : MonoBehaviour
     private string oldX, oldY, oldZ;
     private NavMeshAgent mNavMeshAgent;
     private float x, y, z;
-    public static bool InAttackRange;
     public Camera cam;
 
     public static Animator anim;
@@ -63,12 +62,10 @@ public class clickToMove : MonoBehaviour
             }
         }
         anim.SetBool("IsWalking", true);
-        InAttackRange = false;
 
 
         if (mNavMeshAgent.remainingDistance <= mNavMeshAgent.stoppingDistance)
         {
-            InAttackRange = true;
 
             anim.SetBool("IsWalking", false);
 

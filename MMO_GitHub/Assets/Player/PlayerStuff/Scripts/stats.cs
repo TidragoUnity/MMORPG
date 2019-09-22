@@ -39,8 +39,9 @@ public class stats : MonoBehaviour
             string mobName = transform.name;
 
             mobName = mobName.Replace("(Clone)", "");
-            Debug.Log(mobName);
             mobDrop(mobName);
+            selectTarget.dead = true;
+
             GameObject.Destroy(gameObject);
 
         }

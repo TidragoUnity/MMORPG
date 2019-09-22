@@ -4,12 +4,15 @@ using UnityEngine;
 
 public class attack : MonoBehaviour
 {
-    bool pressed;
+    bool attAgain;
+   
     [SerializeField]
     int damage;
 
     float timer = 0.0f;
-    float waitTime = 1.9f;
+    float waitTime = 2.4f;
+
+
 
     public static Animator anim;
 
@@ -23,28 +26,49 @@ public class attack : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (clickToMove.InAttackRange)
+        if (selectTarget.distance < 2.5f)
         {
             if (timer > waitTime)
             {
-                if (Input.GetKeyDown("1"))
+                if(selectTarget.dead == true) { attAgain = false; anim.SetBool("IsAttacking", false); }else
                 {
+                    if (Input.GetKeyDown("1"))
+                    {
 
-                    Attack(selectTarget.currentTarget);
-                    anim.SetBool("IsWalking", false);
-                    anim.SetBool("IsAttacking", true);
-                    timer = 0;
+                        Attack(selectTarget.currentTarget);
+                        anim.SetBool("IsWalking", false);
+                        anim.SetBool("IsAttacking", true);
+                        timer = 0;
+                        attAgain = true;
+                        return;
+                    }
+                    if (attAgain)
+                    {
+                        Debug.Log("Attack");
+                        Debug.Log(selectTarget.dead);
+                        Attack(selectTarget.currentTarget);
+                        timer = 0;
+                        return;
+                    }
 
 
-                    return;
+
                 }
             }
         }
+        else
+        {
+            attAgain = false;
+            anim.SetBool("IsAttacking", false);
+        }
 
-        anim.SetBool("IsAttacking", false);
+
+
+
 
 
     }
+
 
 
     void Attack(GameObject obj)

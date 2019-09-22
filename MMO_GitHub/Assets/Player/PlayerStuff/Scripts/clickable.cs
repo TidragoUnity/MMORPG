@@ -12,20 +12,7 @@ public class clickable : MonoBehaviour
     {
 
     }
-    /*
-    private void OnMouseDown()
-    {
-        GameObject player = GameObject.Find("Player(Clone)");
 
-        player.GetComponent<selectTarget>().target = this.gameObject;
-        Image Icon = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Icon").GetComponent<Image>();
- 
-         Icon.GetComponent<Image>().sprite = icon;
-        Text targetName = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Text").GetComponent<Text>();
-        targetName.text = this.gameObject.name;
-
-    }
-    */
     private void OnMouseUpAsButton()
     {
         GameObject player = GameObject.Find("Player(Clone)");
@@ -35,9 +22,12 @@ public class clickable : MonoBehaviour
 
         Icon.GetComponent<Image>().sprite = icon;
         Text targetName = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Text").GetComponent<Text>();
+
+        
         targetName.text = this.gameObject.name;
+        targetName.text = targetName.text.Replace("(Clone)", "");
+
     }
-    // Start is called before the first frame update
 
 
 
@@ -53,9 +43,7 @@ public class clickable : MonoBehaviour
                 m.color = Color.red;
 
             }
-          //  Image Icon = GameObject.Find("SelectedHealthBarPanel/HealthBar/Mask/Icon").GetComponent<Image>();
-          //  Icon.GetComponent<Image>().sprite = icon;
-                //highlight this gameobject
+
         }
         else
         {
@@ -65,9 +53,7 @@ public class clickable : MonoBehaviour
                 Material m = r.material;
                 m.color = Color.white;
             }
-           // GameObject Icon = GameObject.Find("SelectedHeathBarPanel/HealthBar/Mask/Icon");
-         //   Icon.GetComponent<Image>().sprite = null;
-            //if it still highlighted remove it and go on;
+
         }
     }
     
