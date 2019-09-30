@@ -10,6 +10,7 @@
     SDespawn,
     SUpdatePosition,
     SSendDrops,
+    SUpdateDestination,
 
 }
 
@@ -21,6 +22,6 @@ public enum ClientPackages
     CLogout,
     CSendMovement,
     CMobDropName,
-
+    CSendDestination,
 
 }

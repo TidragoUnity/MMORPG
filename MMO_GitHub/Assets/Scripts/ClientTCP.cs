@@ -123,4 +123,15 @@ public class ClientTCP
         SendData(buffer.ToArray());
     }
 
+    public static void PACKAGE_SendDestination(float x, float y, float z)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteInteger((int)ClientPackages.CSendDestination);
+        buffer.WriteFloat(x);
+        buffer.WriteFloat(y);
+        buffer.WriteFloat(z);
+        SendData(buffer.ToArray());
+
+    }
+
 }

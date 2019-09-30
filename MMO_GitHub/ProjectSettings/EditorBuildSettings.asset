@@ -17,7 +17,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MMO_Scenes/MMO_VillageStart.unity
     guid: 4f76aa4c5c441444eb82b626329736b7
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MMO_Scenes/Attack_Anim.unity
     guid: 5b42ac75881644b46a65e5e489b8d08c
+  - enabled: 1
+    path: Assets/Scenes/MMO_Scenes/Attack_Anim_2.unity
+    guid: 60454e9615867a24f8aff9713f52bebe
   m_configObjects: {}

@@ -39,6 +39,8 @@ public class OnlinePlayers : MonoBehaviour
         {
             vec3 = new Vector3(x, y, z);
             player.name = username;
+            player.tag = "otherPlayers";
+            player.GetComponent<otherPlayers>().enabled=true;
             Instantiate(player, vec3, Quaternion.identity);
             if (isSpawned != true) isSpawned = true;
         }

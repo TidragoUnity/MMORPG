@@ -9,8 +9,9 @@ public  class selectTarget : MonoBehaviour
     public GameObject target_;
     public GameObject SelcetedUI;
     public static GameObject currentTarget;
-    [SerializeField]
+
     static public float distance;
+    public float showDistance;
     public static bool dead = false;
 
     public bool dead2;
@@ -23,6 +24,7 @@ public  class selectTarget : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        showDistance = distance;
         if(target_ == null)
         {
             if(target == null)
@@ -40,7 +42,9 @@ public  class selectTarget : MonoBehaviour
                 target.GetComponent<stats>().UpdateHealthbar();
                 target_ = target;
                 currentTarget= target;
-                dead2 = dead;
+
+                attack.nextOperationAtt = false;
+
                 dead = false;
                 
             }
@@ -49,9 +53,11 @@ public  class selectTarget : MonoBehaviour
             target.GetComponent<stats>().UpdateHealthbar();
             currentTarget = target;
                 target_.GetComponent<clickable>().isSelected = true;
+            attack.nextOperationAtt = false;
+
 
         }
-        if(currentTarget != null)
+        if (currentTarget != null)
         {
             Distance(currentTarget.transform.position.x, currentTarget.transform.position.y, currentTarget.transform.position.z);
         }
@@ -60,6 +66,8 @@ public  class selectTarget : MonoBehaviour
             target = null;
             target_ = null;
             currentTarget = null;
+            attack.nextOperationAtt = false;
+
         }
 
 

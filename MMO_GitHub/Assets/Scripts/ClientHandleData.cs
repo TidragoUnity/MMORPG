@@ -5,6 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using UnityEngine;
 using UnityEngine.UI;
+using UnityEngine.AI;
 
         
 public class ClientHandleData
@@ -40,6 +41,7 @@ public class ClientHandleData
         packetListener.Add((int)ServerPackages.SDespawn, HandleDespawn);
         packetListener.Add((int)ServerPackages.SUpdatePosition, HandleUpdatePosition);
         packetListener.Add((int)ServerPackages.SSendDrops, HandleDrops);
+        packetListener.Add((int)ServerPackages.SUpdateDestination, HandleUpdateDestination);
 
         informationOutput = GameObject.Find("InformationOutput").GetComponent<Text>();
         playerGold        = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Gold").GetComponent<Text>();
@@ -188,6 +190,7 @@ public class ClientHandleData
         RotateCam.changeCamera = true;
         GameObject player = GameObject.Find("Player(Clone)");
         player.GetComponent<clickToMove>().enabled = true;
+        player.GetComponent<attack>().enabled = true;
         buffer.Dispose();
         spawnedYou = true;
     }
@@ -273,6 +276,32 @@ public class ClientHandleData
         Debug.Log("gold: " + gold + "exp: " + xp + "level: " + level + "honor: " + honor);
 
     }
+    private static void HandleUpdateDestination(byte[] data)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteBytes(data);
+        int packageID = buffer.ReadInteger();
+
+
+
+        float x = buffer.ReadFloat();
+        float y = buffer.ReadFloat();
+        float z = buffer.ReadFloat();
+
+        string username = buffer.ReadString();
+
+        Vector3 pos = new Vector3(x, y, z);
+
+        GameObject player = GameObject.Find(username+"(Clone)");
+        NavMeshAgent magent =player.GetComponent<NavMeshAgent>();
+        magent.destination = pos;
+
+        buffer.Dispose();
+
+
+
+    }
+
     #endregion
 
 

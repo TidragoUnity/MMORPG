@@ -5,7 +5,7 @@ using UnityEngine;
 public class attack : MonoBehaviour
 {
     bool attAgain;
-   
+    public static bool nextOperationAtt;
     [SerializeField]
     int damage;
 
@@ -14,7 +14,9 @@ public class attack : MonoBehaviour
 
 
 
-    public static Animator anim;
+
+
+    public Animator anim;
 
     // Start is called before the first frame update
     void Start()
@@ -35,6 +37,10 @@ public class attack : MonoBehaviour
                     if (Input.GetKeyDown("1"))
                     {
 
+                        Transform target = selectTarget.currentTarget.transform;
+                        transform.LookAt(target);
+
+
                         Attack(selectTarget.currentTarget);
                         anim.SetBool("IsWalking", false);
                         anim.SetBool("IsAttacking", true);
@@ -44,19 +50,42 @@ public class attack : MonoBehaviour
                     }
                     if (attAgain)
                     {
-                        Debug.Log("Attack");
-                        Debug.Log(selectTarget.dead);
+                        //schaut auf das andere objekt
+                        Transform target = selectTarget.currentTarget.transform;
+                        transform.LookAt(target);
+                        //greift das ausgewählte objekt an
                         Attack(selectTarget.currentTarget);
+                        //setzt den Timer zurück
                         timer = 0;
                         return;
                     }
-
-
-
+                    if (nextOperationAtt)
+                    {
+                        //schaut auf das andere objekt
+                        Transform target = selectTarget.currentTarget.transform;
+                        transform.LookAt(target);
+                        //change animation
+                        anim.SetBool("IsWalking", false);
+                        anim.SetBool("IsAttacking", true);
+                        //attacks the target
+                        Attack(selectTarget.currentTarget);
+                        attAgain = true;
+                        //resets the timer
+                        timer = 0;
+                        nextOperationAtt = false;
+                        return;
+                    }
                 }
             }
         }
-        else
+        else if (Input.GetKeyDown("1"))
+        {
+            //Legt das neue Ziel fest
+            Transform target = selectTarget.currentTarget.transform;
+            clickToMove.newDestination(target.transform.position);
+            nextOperationAtt = true;
+
+        }else
         {
             attAgain = false;
             anim.SetBool("IsAttacking", false);
