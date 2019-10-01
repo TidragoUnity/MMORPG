@@ -52,7 +52,7 @@ public class stats : MonoBehaviour
             GameObject.Destroy(gameObject);
 
         }
-
+        UpdateHealthbar();
         if(tag == "Player")
         {
             UiPlayer();
@@ -92,6 +92,7 @@ public class stats : MonoBehaviour
     {
         Health -= value;
     }
+
 
 
 #region Drops

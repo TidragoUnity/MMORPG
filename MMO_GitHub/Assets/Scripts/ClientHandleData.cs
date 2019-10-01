@@ -42,6 +42,8 @@ public class ClientHandleData
         packetListener.Add((int)ServerPackages.SUpdatePosition, HandleUpdatePosition);
         packetListener.Add((int)ServerPackages.SSendDrops, HandleDrops);
         packetListener.Add((int)ServerPackages.SUpdateDestination, HandleUpdateDestination);
+        packetListener.Add((int)ServerPackages.STakeDamage, HandleTakeDamage);
+
 
         informationOutput = GameObject.Find("InformationOutput").GetComponent<Text>();
         playerGold        = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Gold").GetComponent<Text>();
@@ -188,7 +190,7 @@ public class ClientHandleData
         OnlinePlayers.SpawnPlayer(float.Parse(x), float.Parse(y), float.Parse(z), "Player");
         //CameraController.changeCamera = true;
         RotateCam.changeCamera = true;
-        GameObject player = GameObject.Find("Player(Clone)");
+        GameObject player = GameObject.Find("Player");
         player.GetComponent<clickToMove>().enabled = true;
         player.GetComponent<attack>().enabled = true;
         player.GetComponent<selectTarget>().enabled = true;
@@ -212,6 +214,7 @@ public class ClientHandleData
         string z = buffer.ReadString();
         string username = buffer.ReadString();
         OnlinePlayers.SpawnPlayer(float.Parse(x), float.Parse(y), float.Parse(z), username);
+
         buffer.Dispose();
     }
     private static void HandleTheOthers(byte[] data)
@@ -234,9 +237,9 @@ public class ClientHandleData
         buffer.WriteBytes(data);
         int packageID = buffer.ReadInteger();
         string username = buffer.ReadString();
-        Debug.Log("Trying to Despawn..." + username + "(Clone)");
+        Debug.Log("Trying to Despawn..." + username );
 
-        GameObject offlineUser = GameObject.Find(username + ("(Clone)"));
+        GameObject offlineUser = GameObject.Find(username );
         GameObject.Destroy(offlineUser);
     }
     private static void HandleUpdatePosition(byte[] data)
@@ -252,7 +255,7 @@ public class ClientHandleData
         {
             try
             {
-                GameObject user = GameObject.Find(username + ("(Clone)"));
+                GameObject user = GameObject.Find(username );
                 user.transform.position = new Vector3(x, y, z);
                 buffer.Dispose();
             }
@@ -300,12 +303,35 @@ public class ClientHandleData
 
         Vector3 pos = new Vector3(x, y, z);
 
-        GameObject player = GameObject.Find(username+"(Clone)");
+        GameObject player = GameObject.Find(username);
         NavMeshAgent magent =player.GetComponent<NavMeshAgent>();
         magent.destination = pos;
 
         buffer.Dispose();
 
+
+
+    }
+    private static void HandleTakeDamage(byte[] data)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteBytes(data);
+        int packageID = buffer.ReadInteger();
+
+
+
+        int damage = buffer.ReadInteger();
+        string username = buffer.ReadString();
+
+        Debug.Log(username + " took " + damage + " damage");
+
+        GameObject player = GameObject.Find(username);
+        if(player == null) { player = GameObject.Find("Player"); }
+        stats playerStats = player.GetComponent<stats>();
+        playerStats.takeDMG(damage);
+
+
+        buffer.Dispose();
 
 
     }

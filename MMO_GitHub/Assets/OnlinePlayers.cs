@@ -42,6 +42,8 @@ public class OnlinePlayers : MonoBehaviour
             player.tag = "otherPlayers";
             player.GetComponent<otherPlayers>().enabled=true;
             Instantiate(player, vec3, Quaternion.identity);
+            GameObject getPlayer = GameObject.Find(username + "(Clone)");
+            getPlayer.name = username;
             if (isSpawned != true) isSpawned = true;
         }
         catch (System.Exception)

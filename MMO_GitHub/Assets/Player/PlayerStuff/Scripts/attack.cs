@@ -126,7 +126,16 @@ public class attack : MonoBehaviour
         {
             if(obj != null)
             {
-                obj.GetComponent<stats>().changeHealth(damage);
+                if (obj.tag =="otherPlayers")
+                {
+                    ClientTCP.PACKAGE_SDealDamage(damage,obj.name);
+                    Debug.Log("try to attack");
+                }
+                else
+                {
+                    obj.GetComponent<stats>().changeHealth(damage);
+
+                }
 
             }
 

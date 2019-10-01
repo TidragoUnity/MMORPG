@@ -55,10 +55,11 @@ public  class selectTarget : MonoBehaviour
             showUi = false;
             Ui.SetActive(showUi);
             deselectTarget = false;
+            currentTarget = null;
+            target = null;
+
             if (target_ == null) { return; }
             target_.GetComponent<clickable>().isSelected = false;
-            target = null;
-            currentTarget = null;
             target_ = null;
 
 

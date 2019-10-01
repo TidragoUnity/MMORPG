@@ -16,8 +16,9 @@ public class clickToMove : MonoBehaviour
     static Vector3 targetPos;
     public Animator anim;
 
+    static bool follow;
     float time;
-    float waitTime =10;
+    float waitTime =4;
 
     // Start is called before the first frame update
     void Start()
@@ -36,6 +37,7 @@ public class clickToMove : MonoBehaviour
         if(time > waitTime)
         {
             SendXYZ();
+            followTarget();
             time = 0;
         }
 
@@ -72,13 +74,13 @@ public class clickToMove : MonoBehaviour
             }
         }
         anim.SetBool("IsWalking", true);
-
+        follow = true;
         // stoppt den Agent
         if (mNavMeshAgent.remainingDistance <= mNavMeshAgent.stoppingDistance)
         {
 
             anim.SetBool("IsWalking", false);
-
+            follow = false;
         }
         else
         {
@@ -102,15 +104,20 @@ public class clickToMove : MonoBehaviour
         ClientTCP.PACKAGE_SendDestination(target.transform.position.x, target.transform.position.y, target.transform.position.z);
         staticTarget = target;
         targetPos = target.transform.position;
-
+        follow = true;
     }
     void followTarget()
     {
+        if(follow != true) { return; }
+        if(selectTarget.currentTarget == null) { return; }
+        if (staticTarget == null){ return; }
         if(staticTarget.transform.position != targetPos)
         {
+
             newDestination(staticTarget);
            
         }
 
     }
+
 }

@@ -36,7 +36,7 @@ public class RotateCam : MonoBehaviour
 
         if (changeCamera && !changedCamera)
         {
-            if(gameObject.transform.root.name == "Player(Clone)")
+            if(gameObject.transform.root.name == "Player")
             {
                 Debug.Log("ChangedCamera");
                 camGam.SetActive(true);

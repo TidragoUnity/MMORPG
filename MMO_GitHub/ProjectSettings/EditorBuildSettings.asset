@@ -20,7 +20,10 @@ EditorBuildSettings:
   - enabled: 0
     path: Assets/Scenes/MMO_Scenes/Attack_Anim.unity
     guid: 5b42ac75881644b46a65e5e489b8d08c
-  - enabled: 1
+  - enabled: 0
     path: Assets/Scenes/MMO_Scenes/Attack_Anim_2.unity
     guid: 60454e9615867a24f8aff9713f52bebe
+  - enabled: 1
+    path: Assets/Scenes/MMO_Scenes/Attack0110.unity
+    guid: be861aea36e6f5245a106c6147a6c627
   m_configObjects: {}

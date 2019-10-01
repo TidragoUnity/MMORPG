@@ -134,4 +134,13 @@ public class ClientTCP
 
     }
 
+    public static void PACKAGE_SDealDamage(int damage, string username)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteInteger((int)ClientPackages.CDealDamage);
+        buffer.WriteInteger(damage);
+        buffer.WriteString(username);
+        SendData(buffer.ToArray());
+        buffer.Dispose();
+    }
 }

@@ -29,7 +29,7 @@ public class CameraController : MonoBehaviour
             cam = Camera.main;
             Camera oldCam = GameObject.Find("MenuCamera").GetComponent<Camera>();
             oldCam.gameObject.SetActive(false);
-            player = GameObject.Find("Player(Clone)");
+            player = GameObject.Find("Player");
             changedCamera = true;
         }
     }

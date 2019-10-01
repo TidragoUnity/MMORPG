@@ -15,7 +15,7 @@ public class clickable : MonoBehaviour
 
     private void OnMouseUpAsButton()
     {
-        GameObject player = GameObject.Find("Player(Clone)");
+        GameObject player = GameObject.Find("Player");
 
         player.GetComponent<selectTarget>().target = this.gameObject;
         Image Icon = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar/Icon").GetComponent<Image>();
