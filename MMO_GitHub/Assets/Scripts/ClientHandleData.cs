@@ -191,8 +191,16 @@ public class ClientHandleData
         GameObject player = GameObject.Find("Player(Clone)");
         player.GetComponent<clickToMove>().enabled = true;
         player.GetComponent<attack>().enabled = true;
+        player.GetComponent<selectTarget>().enabled = true;
+        player.GetComponent<otherPlayers>().enabled = false;
+        player.tag = "Player";
         buffer.Dispose();
         spawnedYou = true;
+        GameObject bars = GameObject.Find("Canvas/OtherInterfaces/Bars");
+        bars.SetActive(true);
+        Text uName = GameObject.Find("Canvas/OtherInterfaces/Bars/HealthBar/HealthBarPanel/HealthBar/Text").GetComponent<Text>();
+        uName.text = Login.Username;
+
     }
     private static void HandleForOnlines(byte[] data)
     {

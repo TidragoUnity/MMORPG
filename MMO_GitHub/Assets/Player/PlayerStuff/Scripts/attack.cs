@@ -12,6 +12,7 @@ public class attack : MonoBehaviour
     float timer = 0.0f;
     float waitTime = 2.4f;
 
+    public static bool stoppAttack;
 
 
 
@@ -28,61 +29,80 @@ public class attack : MonoBehaviour
     void Update()
     {
         timer += Time.deltaTime;
-        if (selectTarget.distance < 2.5f)
+        if (selectTarget.distance < 3.2f)
         {
-            if (timer > waitTime)
+            if (selectTarget.currentTarget != null)
             {
-                if(selectTarget.dead == true) { attAgain = false; anim.SetBool("IsAttacking", false); }else
+                if (timer > waitTime)
                 {
-                    if (Input.GetKeyDown("1"))
-                    {
+                        if (selectTarget.dead == true) { attAgain = false; anim.SetBool("IsAttacking", false); }
+                        else
+                        {
+                            if (Input.GetKeyDown("1"))
+                            {
+                            stoppAttack = false;
+                                Transform target = selectTarget.currentTarget.transform;
+                                transform.LookAt(target);
 
-                        Transform target = selectTarget.currentTarget.transform;
-                        transform.LookAt(target);
+
+                                Attack(selectTarget.currentTarget);
+                                anim.SetBool("IsWalking", false);
+                                anim.SetBool("IsAttacking", true);
+                                timer = 0;
+                                attAgain = true;
+                                return;
+                            }
+                            if (attAgain)
+                            {
+                            if (stoppAttack == true) { anim.SetBool("IsAttacking", false); return; }
+
+                            //schaut auf das andere objekt
+                            Transform target = selectTarget.currentTarget.transform;
+                                transform.LookAt(target);
+                                //greift das ausgewählte objekt an
+                                Attack(selectTarget.currentTarget);
+                                //setzt den Timer zurück
+                                timer = 0;
+                                return;
+                            }
+                            if (nextOperationAtt)
+                            {
+                            if (stoppAttack == true) { anim.SetBool("IsAttacking", false); return; }
+
+                            //schaut auf das andere objekt
+                            Transform target = selectTarget.currentTarget.transform;
+                                transform.LookAt(target);
+                                //change animation
+                                anim.SetBool("IsWalking", false);
+                                anim.SetBool("IsAttacking", true);
+                                //attacks the target
+                                Attack(selectTarget.currentTarget);
+                                attAgain = true;
+                                //resets the timer
+                                timer = 0;
+                                nextOperationAtt = false;
+                                return;
+                            }
+                            else
+                            {
+                                anim.SetBool("IsWalking", false);
+                                anim.SetBool("IsAttacking", false);
+                                attAgain = false;
+                            }
 
 
-                        Attack(selectTarget.currentTarget);
-                        anim.SetBool("IsWalking", false);
-                        anim.SetBool("IsAttacking", true);
-                        timer = 0;
-                        attAgain = true;
-                        return;
-                    }
-                    if (attAgain)
-                    {
-                        //schaut auf das andere objekt
-                        Transform target = selectTarget.currentTarget.transform;
-                        transform.LookAt(target);
-                        //greift das ausgewählte objekt an
-                        Attack(selectTarget.currentTarget);
-                        //setzt den Timer zurück
-                        timer = 0;
-                        return;
-                    }
-                    if (nextOperationAtt)
-                    {
-                        //schaut auf das andere objekt
-                        Transform target = selectTarget.currentTarget.transform;
-                        transform.LookAt(target);
-                        //change animation
-                        anim.SetBool("IsWalking", false);
-                        anim.SetBool("IsAttacking", true);
-                        //attacks the target
-                        Attack(selectTarget.currentTarget);
-                        attAgain = true;
-                        //resets the timer
-                        timer = 0;
-                        nextOperationAtt = false;
-                        return;
-                    }
+                        }
+                    
                 }
             }
         }
         else if (Input.GetKeyDown("1"))
         {
+            if(selectTarget.currentTarget == null) { return; }
             //Legt das neue Ziel fest
-            Transform target = selectTarget.currentTarget.transform;
-            clickToMove.newDestination(target.transform.position);
+            GameObject target = selectTarget.currentTarget;
+            stoppAttack = false;
+            clickToMove.newDestination(target);
             nextOperationAtt = true;
 
         }else

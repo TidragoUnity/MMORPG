@@ -17,9 +17,15 @@ public class stats : MonoBehaviour
     [SerializeField]
     private int dropHonor;
 
+    float timer;
+    float timerMax;
+
+    Animator anim;
+
     // Start is called before the first frame update
     void Start()
     {
+        anim = GetComponent<Animator>();
         Health = MaxHealth;
     }
 
@@ -37,13 +43,19 @@ public class stats : MonoBehaviour
                 return;
             }
             string mobName = transform.name;
-
+            selectTarget.deselectTarget = true;
             mobName = mobName.Replace("(Clone)", "");
             mobDrop(mobName);
+            anim.SetBool("dead", true);
+            Waited(50f);
             selectTarget.dead = true;
-
             GameObject.Destroy(gameObject);
 
+        }
+
+        if(tag == "Player")
+        {
+            UiPlayer();
         }
     }
 
@@ -54,27 +66,31 @@ public class stats : MonoBehaviour
 
     public void changeHealth(int value)
     {
-        Healthbar = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar");
+        Healthbar = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar");
 
         BarSrcipt script = Healthbar.GetComponent<BarSrcipt>();
         script.MaxValue = MaxHealth;
         Health -= value;
         script.ChangeValue(script.MapHealth(Health, 0, MaxHealth, 0, 1));
-        GameObject HealthbarText = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Mask/Text");
+        GameObject HealthbarText = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar/Mask/Text");
         Text healthText = HealthbarText.GetComponent<Text>();
         healthText.text = " " + Health + " / " + MaxHealth;
 
     }
     public void UpdateHealthbar()
     {
-        GameObject HealthbarUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar");
+        GameObject HealthbarUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar");
         BarSrcipt scriptUpdate = HealthbarUpdate.GetComponent<BarSrcipt>();
         scriptUpdate.MaxValue = MaxHealth;
         scriptUpdate.ChangeValue(scriptUpdate.MapHealth(Health, 0, MaxHealth, 0, 1));
 
-        GameObject HealthbarTextUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Mask/Text");
+        GameObject HealthbarTextUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar/Mask/Text");
         Text healthText = HealthbarTextUpdate.GetComponent<Text>();
         healthText.text = " " + Health + " / " + MaxHealth;
+    }
+    public void takeDMG(int value)
+    {
+        Health -= value;
     }
 
 
@@ -86,5 +102,35 @@ public class stats : MonoBehaviour
         ClientTCP.PACKAGE_SendDrops(mobname);
     }
 
-#endregion
+    #endregion
+    private bool Waited(float seconds)
+    {
+        timerMax = seconds;
+
+        timer += Time.deltaTime;
+
+        if (timer >= timerMax)
+        {
+            return true; //max reached - waited x - seconds
+        }
+
+        return false;
+    }
+
+
+    #region Player
+
+    void UiPlayer()
+    {
+        GameObject HealthbarUpdate = GameObject.Find("Canvas/OtherInterfaces/Bars/HealthBar/HealthBarPanel/HealthBar");
+        BarSrcipt scriptUpdate = HealthbarUpdate.GetComponent<BarSrcipt>();
+        scriptUpdate.MaxValue = MaxHealth;
+        scriptUpdate.ChangeValue(scriptUpdate.MapHealth(Health, 0, MaxHealth, 0, 1));
+
+        GameObject HealthbarTextUpdate = GameObject.Find("Canvas/OtherInterfaces/Bars/HealthBar/HealthBarPanel/HealthBar/Mask/Text");
+        Text healthText = HealthbarTextUpdate.GetComponent<Text>();
+        healthText.text = " " + Health + " / " + MaxHealth;
+    }
+    #endregion
+
 }

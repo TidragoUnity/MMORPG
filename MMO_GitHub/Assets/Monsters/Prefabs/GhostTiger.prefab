@@ -451,6 +451,7 @@ GameObject:
   - component: {fileID: 4042836037119115011}
   - component: {fileID: 4463033716347681774}
   - component: {fileID: 6816411966191934744}
+  - component: {fileID: 3419753807048023895}
   m_Layer: 0
   m_Name: GhostTiger
   m_TagString: enemy
@@ -484,7 +485,7 @@ Animator:
   m_GameObject: {fileID: 3987661692461127960}
   m_Enabled: 1
   m_Avatar: {fileID: 9000000, guid: 3499679eeaa8ea244ac461f24208b7d4, type: 3}
-  m_Controller: {fileID: 9100000, guid: 17b04bf3d7ba7db45a1f78b87e93f364, type: 2}
+  m_Controller: {fileID: 9100000, guid: a1283b59101b0f44986268533e1282f2, type: 2}
   m_CullingMode: 1
   m_UpdateMode: 0
   m_ApplyRootMotion: 0
@@ -576,6 +577,22 @@ MonoBehaviour:
   dropXP: 0
   dropGold: 0
   dropHonor: 0
+--- !u!114 &3419753807048023895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3987661692461127960}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c2893cc5510a04bb8e7e462e080843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  distance: 0
+  dmg: 4
+  timer: 0
 --- !u!1 &3991332628107155933
 GameObject:
   m_ObjectHideFlags: 0

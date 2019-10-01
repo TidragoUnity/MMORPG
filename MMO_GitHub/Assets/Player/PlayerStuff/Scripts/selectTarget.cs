@@ -15,15 +15,61 @@ public  class selectTarget : MonoBehaviour
     public static bool dead = false;
 
     public bool dead2;
+    public GameObject Ui;
+    bool showUi = false;
+
+    public static bool deselectTarget;
+
+    Animator anim;
 
     void Start()
     {
+        anim = GetComponent<Animator>();
+        Ui = GameObject.Find("SelectPanel");
+        Ui.SetActive(showUi);
 
     }
 
     // Update is called once per frame
     void Update()
     {
+
+        #region ESC
+
+        if (Ui == null)
+        {
+                 Ui = GameObject.Find("SelectPanel");
+        }
+        else
+        {
+
+        }
+
+        if (Input.GetKeyDown(KeyCode.Escape)|| deselectTarget)
+        {
+ 
+            attack.stoppAttack = true;
+            attack.nextOperationAtt = false;
+            anim.SetBool("IsWalking", false);
+            anim.SetBool("IsAttacking", false);
+            showUi = false;
+            Ui.SetActive(showUi);
+            deselectTarget = false;
+            if (target_ == null) { return; }
+            target_.GetComponent<clickable>().isSelected = false;
+            target = null;
+            currentTarget = null;
+            target_ = null;
+
+
+
+            return;
+        }
+
+
+        #endregion
+        
+
         showDistance = distance;
         if(target_ == null)
         {
@@ -38,11 +84,13 @@ public  class selectTarget : MonoBehaviour
 
             if (target_ == null&& target != null)
             {
+                showUi = true;
+                Ui.SetActive(showUi);
                 target.GetComponent<clickable>().isSelected = true ;
                 target.GetComponent<stats>().UpdateHealthbar();
                 target_ = target;
                 currentTarget= target;
-
+                attack.stoppAttack = true;
                 attack.nextOperationAtt = false;
 
                 dead = false;
@@ -54,6 +102,7 @@ public  class selectTarget : MonoBehaviour
             currentTarget = target;
                 target_.GetComponent<clickable>().isSelected = true;
             attack.nextOperationAtt = false;
+            attack.stoppAttack = true;
 
 
         }

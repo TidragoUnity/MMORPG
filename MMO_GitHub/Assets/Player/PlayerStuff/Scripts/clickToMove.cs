@@ -11,8 +11,13 @@ public class clickToMove : MonoBehaviour
     private float x, y, z;
     public Camera cam;
 
+    static GameObject staticTarget;
+    GameObject oldTarget;
+    static Vector3 targetPos;
     public Animator anim;
 
+    float time;
+    float waitTime =10;
 
     // Start is called before the first frame update
     void Start()
@@ -24,19 +29,15 @@ public class clickToMove : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
-        
+        time += Time.deltaTime;
+
         Move();
-        if(i > 8)
+  
+        if(time > waitTime)
         {
-            //SendXYZ();
-            i = 0;
+            SendXYZ();
+            time = 0;
         }
-        else
-        {
-            i++;
-        }
-
-
 
     }
 
@@ -53,10 +54,14 @@ public class clickToMove : MonoBehaviour
                 if(hit.transform.tag == "floor")
                 {
                     mNavMeshAgent.stoppingDistance = 0.8f;
-
+                    
                     //legt das Zeil fest wohin es geht
                     mNavMeshAgent.destination = hit.point;
                     ClientTCP.PACKAGE_SendDestination(hit.point.x, hit.point.y, hit.point.z);
+                    if(oldTarget != null)
+                    {
+                        targetPos = oldTarget.transform.position;
+                    }
 
 
                 }
@@ -90,10 +95,22 @@ public class clickToMove : MonoBehaviour
 
     }
 
-    public static void newDestination(Vector3 vec3)
+    public static void newDestination(GameObject target)
     {
-        mNavMeshAgent.destination = vec3;
-        mNavMeshAgent.stoppingDistance = 2.0f;
-        ClientTCP.PACKAGE_SendDestination(vec3.x, vec3.y, vec3.z);
+        mNavMeshAgent.destination = target.transform.position;
+        mNavMeshAgent.stoppingDistance = 2.5f;
+        ClientTCP.PACKAGE_SendDestination(target.transform.position.x, target.transform.position.y, target.transform.position.z);
+        staticTarget = target;
+        targetPos = target.transform.position;
+
+    }
+    void followTarget()
+    {
+        if(staticTarget.transform.position != targetPos)
+        {
+            newDestination(staticTarget);
+           
+        }
+
     }
 }

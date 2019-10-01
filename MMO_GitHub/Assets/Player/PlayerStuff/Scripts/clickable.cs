@@ -18,10 +18,10 @@ public class clickable : MonoBehaviour
         GameObject player = GameObject.Find("Player(Clone)");
 
         player.GetComponent<selectTarget>().target = this.gameObject;
-        Image Icon = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Icon").GetComponent<Image>();
+        Image Icon = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar/Icon").GetComponent<Image>();
 
         Icon.GetComponent<Image>().sprite = icon;
-        Text targetName = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectedHealthBarPanel/HealthBar/Text").GetComponent<Text>();
+        Text targetName = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar/Text").GetComponent<Text>();
 
         
         targetName.text = this.gameObject.name;
