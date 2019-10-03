@@ -1894,7 +1894,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 1499817329951b74791deef9e1199bac, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  icon: {fileID: 0}
+  icon: {fileID: 21300000, guid: 9b7e2b0033b12a9449bda45e782c4e40, type: 3}
   isSelected: 0
 --- !u!114 &5129332049480118613
 MonoBehaviour:

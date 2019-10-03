@@ -20,13 +20,27 @@ public class stats : MonoBehaviour
     float timer;
     float timerMax;
 
+
+    #region Player
     Animator anim;
+
+    GameObject playerInv;
+    bool openInv;
+    public static bool isSitting;
+    #endregion
 
     // Start is called before the first frame update
     void Start()
     {
         anim = GetComponent<Animator>();
         Health = MaxHealth;
+        if(tag == "Player")
+        {
+            playerInv = GameObject.Find("PlayerInv");
+            playerInv.SetActive(false);
+            openInv = false;
+        }
+
     }
 
     // Update is called once per frame
@@ -34,7 +48,7 @@ public class stats : MonoBehaviour
     {
         if( Health <= 0)
         {
-            if(gameObject.tag == "Player")
+            if(gameObject.tag == "Player"|| gameObject.tag == "otherPlayers")
             {
                 Debug.Log("You died!");
                 Health = MaxHealth;
@@ -56,7 +70,20 @@ public class stats : MonoBehaviour
         if(tag == "Player")
         {
             UiPlayer();
+            openPlayerInv();
+            if (Input.GetKeyDown("2"))
+            {
+                clickToMove.newDestination(gameObject);
+                isSitting = true;
+
+            }
+            if (isSitting)
+            {
+                Debug.Log("trying to sit");
+                IsSitting();
+            }
         }
+
     }
 
     int GetHealth()
@@ -131,6 +158,49 @@ public class stats : MonoBehaviour
         GameObject HealthbarTextUpdate = GameObject.Find("Canvas/OtherInterfaces/Bars/HealthBar/HealthBarPanel/HealthBar/Mask/Text");
         Text healthText = HealthbarTextUpdate.GetComponent<Text>();
         healthText.text = " " + Health + " / " + MaxHealth;
+    }
+
+    void openPlayerInv()
+    {
+        if (Input.GetKeyDown(KeyCode.I))
+        {
+            if(openInv== false)
+            {
+
+                playerInv.SetActive(true);
+                openInv = true;
+                Debug.Log("opend Inv");
+                return;
+            }
+
+        }
+        if (Input.GetKeyDown(KeyCode.I)|| Input.GetKeyDown(KeyCode.Escape))
+        {
+            if (openInv)
+            {
+                playerInv.SetActive(false);
+                openInv = false;
+
+            }
+        }
+
+
+   
+
+    }
+
+    void IsSitting()
+    {
+        anim.SetBool("IsSitting", true);
+        if (Health < MaxHealth)
+        { 
+                 
+            Health++;
+        }
+        else{
+            anim.SetBool("IsSitting", false);
+            isSitting = false;
+        }
     }
     #endregion
 
