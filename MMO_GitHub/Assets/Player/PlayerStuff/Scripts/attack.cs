@@ -15,6 +15,11 @@ public class attack : MonoBehaviour
     public static bool stoppAttack;
 
 
+    #region InventoryBoni
+    int inventoryCount = 0;
+    public InventoryObject inventory;
+    public int bonusDamage;
+    #endregion
 
 
     public Animator anim;
@@ -23,11 +28,14 @@ public class attack : MonoBehaviour
     void Start()
     {
         anim =GetComponent<Animator>();
+        inventory = Resources.Load<InventoryObject>("ScriptableObjects/Inventory/Player Inventory");
+
     }
 
     // Update is called once per frame
     void Update()
     {
+        GetInvBoni();
         timer += Time.deltaTime;
         if (selectTarget.distance < 3.2f)
         {
@@ -110,12 +118,6 @@ public class attack : MonoBehaviour
             attAgain = false;
             anim.SetBool("IsAttacking", false);
         }
-
-
-
-
-
-
     }
 
 
@@ -144,6 +146,33 @@ public class attack : MonoBehaviour
         {
 
             throw;
+        }
+
+    }
+    void GetInvBoni()
+    {
+
+        if (inventory.Container.Count > inventoryCount)
+        {
+            bonusDamage = 0;
+            foreach (var Container in inventory.Container)
+            {
+                if (Container.item.type == ItemType.Equipment)
+                {
+                    EquipmentObject equipment = (EquipmentObject)Container.item;
+                    bonusDamage += equipment.attBonus;
+                    Debug.Log("bonus damage" + equipment.attBonus);
+
+                }
+                else if(Container.item.type == ItemType.Default)
+                {
+
+                }
+                else if(Container.item.type == ItemType.Food)
+                {
+
+                }
+            }
         }
 
     }

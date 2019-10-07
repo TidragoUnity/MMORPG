@@ -27,11 +27,16 @@ public class stats : MonoBehaviour
     GameObject playerInv;
     bool openInv;
     public static bool isSitting;
+    public InventoryObject inventory;
+    #region CombatStats
+
+    #endregion
     #endregion
 
     // Start is called before the first frame update
     void Start()
     {
+        
         anim = GetComponent<Animator>();
         Health = MaxHealth;
         if(tag == "Player")
@@ -39,8 +44,9 @@ public class stats : MonoBehaviour
             playerInv = GameObject.Find("PlayerInv");
             playerInv.SetActive(false);
             openInv = false;
+            Debug.Log("Trying to Select the Inventory");
+            inventory = Resources.Load<InventoryObject>("ScriptableObjects/Inventory/Player Inventory");
         }
-
     }
 
     // Update is called once per frame
@@ -69,6 +75,7 @@ public class stats : MonoBehaviour
         UpdateHealthbar();
         if(tag == "Player")
         {
+            GetInvStats();
             UiPlayer();
             openPlayerInv();
             if (Input.GetKeyDown("2"))
@@ -106,15 +113,19 @@ public class stats : MonoBehaviour
     }
     public void UpdateHealthbar()
     {
-        GameObject HealthbarUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar");
-        BarSrcipt scriptUpdate = HealthbarUpdate.GetComponent<BarSrcipt>();
-        scriptUpdate.MaxValue = MaxHealth;
-        scriptUpdate.ChangeValue(scriptUpdate.MapHealth(Health, 0, MaxHealth, 0, 1));
+        if(selectTarget.currentTarget == gameObject)
+        {
+            GameObject HealthbarUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar");
+            BarSrcipt scriptUpdate = HealthbarUpdate.GetComponent<BarSrcipt>();
+            scriptUpdate.MaxValue = MaxHealth;
+            scriptUpdate.ChangeValue(scriptUpdate.MapHealth(Health, 0, MaxHealth, 0, 1));
 
-        GameObject HealthbarTextUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar/Mask/Text");
-        Text healthText = HealthbarTextUpdate.GetComponent<Text>();
-        healthText.text = " " + Health + " / " + MaxHealth;
+            GameObject HealthbarTextUpdate = GameObject.Find("Canvas/OtherInterfaces/Selected/SelectPanel/SelectedHealthBarPanel/HealthBar/Mask/Text");
+            Text healthText = HealthbarTextUpdate.GetComponent<Text>();
+            healthText.text = " " + Health + " / " + MaxHealth;
+        }
     }
+
     public void takeDMG(int value)
     {
         Health -= value;
@@ -200,6 +211,18 @@ public class stats : MonoBehaviour
         else{
             anim.SetBool("IsSitting", false);
             isSitting = false;
+        }
+    }
+
+    void GetInvStats()
+    {
+        for (int i = 0; i < inventory.Container.Count; i++)
+        {
+            
+        }
+        foreach (var Container in inventory.Container)
+        {
+            Debug.Log(Container.item.name);
         }
     }
     #endregion

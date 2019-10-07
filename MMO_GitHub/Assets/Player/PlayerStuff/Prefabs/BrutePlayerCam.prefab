@@ -1748,6 +1748,7 @@ GameObject:
   - component: {fileID: 5129332049480118613}
   - component: {fileID: 5129332049480118614}
   - component: {fileID: 2499578830581958232}
+  - component: {fileID: 5970838507494111051}
   m_Layer: 0
   m_Name: BrutePlayerCam
   m_TagString: otherPlayers
@@ -1863,6 +1864,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   damage: 44
+  inventory: {fileID: 0}
+  bonusDamage: 0
   anim: {fileID: 0}
 --- !u!114 &3751183225404478585
 MonoBehaviour:
@@ -1913,6 +1916,7 @@ MonoBehaviour:
   dropXP: 0
   dropGold: 0
   dropHonor: 0
+  inventory: {fileID: 11400000, guid: 7f1a58ce9b9ecec498b144f5a7ceca81, type: 2}
 --- !u!195 &5129332049480118614
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -1928,7 +1932,7 @@ NavMeshAgent:
   avoidancePriority: 50
   m_AngularSpeed: 120
   m_StoppingDistance: 1
-  m_AutoTraverseOffMeshLink: 1
+  m_AutoTraverseOffMeshLink: 0
   m_AutoBraking: 1
   m_AutoRepath: 0
   m_Height: 2
@@ -1948,6 +1952,22 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   anim: {fileID: 0}
+--- !u!114 &5970838507494111051
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5129332049480118612}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a0629731fc8279849a9835fef1304aec, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  inventory: {fileID: 11400000, guid: 0658b2a490bbf1b4eaa1bebba0ffb6a1, type: 2}
+  playerInvSlots: 5
+  removeItem: {fileID: 11400000, guid: f634ea31dba5a4c4598302dcda8e37fd, type: 2}
+  removeInt: 1
 --- !u!1 &5256801236071502311
 GameObject:
   m_ObjectHideFlags: 0

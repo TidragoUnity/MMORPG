@@ -577,6 +577,7 @@ MonoBehaviour:
   dropXP: 0
   dropGold: 0
   dropHonor: 0
+  inventory: {fileID: 11400000, guid: 7f1a58ce9b9ecec498b144f5a7ceca81, type: 2}
 --- !u!114 &3419753807048023895
 MonoBehaviour:
   m_ObjectHideFlags: 0
