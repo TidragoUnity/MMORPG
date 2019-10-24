@@ -143,4 +143,15 @@ public class ClientTCP
         SendData(buffer.ToArray());
         buffer.Dispose();
     }
+    public static void PACKAGE_SDealDamageTo(int damage, int mobNameID, int mobID)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteInteger((int)ClientPackages.CDealDamageTo);
+        buffer.WriteInteger(damage);
+        buffer.WriteInteger(mobNameID);
+        buffer.WriteInteger(mobID);
+        SendData(buffer.ToArray());
+        buffer.Dispose();
+    }
+
 }

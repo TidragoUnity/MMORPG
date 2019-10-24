@@ -10,6 +10,7 @@ public class InventoryObject : ScriptableObject
     public List<InventorySlot> Container = new List<InventorySlot>();
     public ItemObject removeItem;
     public int removeAmount;
+
     public void AddItem(ItemObject _item, int _amount)
     {
         bool hasItem = false;
@@ -38,11 +39,13 @@ public class InventoryObject : ScriptableObject
             {
                 if(container.amount > _amount)
                 {
-                    container.amount-= _amount;
+                    container.RemoveAmount(_amount);
+                    return;
                 }
-                else
+                else if(container.amount == _amount)
                 {
                     Container.RemoveAt(i);
+                    return;
                 }
                 return;
             }
@@ -64,5 +67,9 @@ public class InventorySlot
     public void AddAmount(int value)
     {
         amount += value;
+    }
+    public void RemoveAmount(int value)
+    {
+        amount -= value;
     }
 }

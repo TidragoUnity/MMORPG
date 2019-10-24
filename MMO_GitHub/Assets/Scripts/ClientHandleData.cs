@@ -43,6 +43,8 @@ public class ClientHandleData
         packetListener.Add((int)ServerPackages.SSendDrops, HandleDrops);
         packetListener.Add((int)ServerPackages.SUpdateDestination, HandleUpdateDestination);
         packetListener.Add((int)ServerPackages.STakeDamage, HandleTakeDamage);
+        packetListener.Add((int)ServerPackages.SSpawnMob, HandleSpawnMob);
+        packetListener.Add((int)ServerPackages.SDamageMob, HandleDamageMob);
 
 
         informationOutput = GameObject.Find("InformationOutput").GetComponent<Text>();
@@ -336,7 +338,83 @@ public class ClientHandleData
 
     }
 
+
+
     #endregion
 
+    #region Mobs
+    private static void HandleSpawnMob(byte[] data)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteBytes(data);
+        int packageID = buffer.ReadInteger();
+
+        int mobNameID = buffer.ReadInteger();
+        float x = buffer.ReadFloat();
+        float y = buffer.ReadFloat();
+        float z = buffer.ReadFloat();
+        int MobID = buffer.ReadInteger();
+
+        if ((int)Mobname.GhostTiger == mobNameID)
+        {
+            monsterSpawner mSpawn = GameObject.Find("GhostTiger").GetComponent<monsterSpawner>();
+            mSpawn.SpawnMob(x, y, z, MobID, (int)Mobname.GhostTiger);
+            Debug.Log(x + " " + y + " " + z);
+        } else if ((int)Mobname.SpiderGreenMesh == mobNameID)
+        {
+
+        } else if ((int)Mobname.TrollGiant == mobNameID)
+        {
+
+        }
+
+        buffer.Dispose();
+
+    }
+    private static void HandleDamageMob(byte[] data)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteBytes(data);
+        int packageID = buffer.ReadInteger();
+
+        int damage = buffer.ReadInteger();
+        int mobNameID = buffer.ReadInteger();
+        int mobID = buffer.ReadInteger();
+
+
+        if ((int)Mobname.GhostTiger == mobNameID)
+        {
+            monsterSpawner tSpawn = GameObject.Find("GhostTiger").GetComponent<monsterSpawner>();
+            Debug.Log("Found Transform");
+            stats[] tigerStats = tSpawn.GetComponentsInChildren<stats>();
+
+            foreach (stats child in tigerStats)
+            {
+
+                if (child.MobID == mobID)
+                {
+                    Debug.Log("found mob with ID: " + mobID);
+                    child.changeHealth(damage);
+
+                }
+            }
+
+            //                    obj.GetComponent<stats>().changeHealth(damage);
+
+        }
+        else if ((int)Mobname.SpiderGreenMesh == mobNameID)
+        {
+
+        }
+        else if ((int)Mobname.TrollGiant == mobNameID)
+        {
+
+        }
+
+        buffer.Dispose();
+
+    }
+
+    #endregion
 
 }

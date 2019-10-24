@@ -654,7 +654,6 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 2215487766571139612}
-  - component: {fileID: 2215487766571139613}
   - component: {fileID: 1516179357494979809}
   m_Layer: 0
   m_Name: CameraRotatePoint
@@ -678,20 +677,6 @@ Transform:
   m_Father: {fileID: 8175253276789244743}
   m_RootOrder: 2
   m_LocalEulerAnglesHint: {x: 0, y: 180, z: 0}
---- !u!114 &2215487766571139613
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 2215487766571139615}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 320827207edd7c44e843b0d80eb68bf3, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  speed: 3.5
-  player: {fileID: 2215487766523861308}
 --- !u!114 &1516179357494979809
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1916,6 +1901,8 @@ MonoBehaviour:
   dropXP: 0
   dropGold: 0
   dropHonor: 0
+  type: 0
+  MobID: 0
   inventory: {fileID: 11400000, guid: 7f1a58ce9b9ecec498b144f5a7ceca81, type: 2}
 --- !u!195 &5129332049480118614
 NavMeshAgent:
@@ -3452,6 +3439,11 @@ PrefabInstance:
       propertyPath: m_LocalScale.z
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 7684908729881571684, guid: 5141497a6cfe8004b8c56c1a7dd87c5e,
+        type: 3}
+      propertyPath: m_ShowToolkit
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 7684908729881571682, guid: 5141497a6cfe8004b8c56c1a7dd87c5e,
         type: 3}
       propertyPath: player
@@ -3462,12 +3454,8 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 0
       objectReference: {fileID: 0}
-    - target: {fileID: 7684908729881571684, guid: 5141497a6cfe8004b8c56c1a7dd87c5e,
-        type: 3}
-      propertyPath: m_ShowToolkit
-      value: 0
-      objectReference: {fileID: 0}
-    m_RemovedComponents: []
+    m_RemovedComponents:
+    - {fileID: 7684908729881571682, guid: 5141497a6cfe8004b8c56c1a7dd87c5e, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 5141497a6cfe8004b8c56c1a7dd87c5e, type: 3}
 --- !u!1 &2215487766523861308 stripped
 GameObject:

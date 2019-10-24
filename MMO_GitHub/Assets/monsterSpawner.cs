@@ -2,6 +2,14 @@
 using System.Collections.Generic;
 using UnityEngine;
 
+public enum Mobname
+{
+    GhostTiger = 0,
+    SpiderGreenMesh,
+    TrollGiant,
+
+}
+
 public class monsterSpawner : MonoBehaviour
 {
     public GameObject prefab;
@@ -40,9 +48,21 @@ public class monsterSpawner : MonoBehaviour
            // Instantiate(prefab, pos, Quaternion.identity);
            GameObject t = ((GameObject)Instantiate(prefab, pos, Quaternion.identity));
            t.transform.parent = transform;
-
+          //  t.tag = "mob";
             mobCount++;
         }
+
+    }
+    public void SpawnMob(float x, float y, float z, int MobID, int type)
+    {
+        Vector3 pos = new Vector3(x, y, z);
+
+        // Instantiate(prefab, pos, Quaternion.identity);
+        GameObject t = ((GameObject)Instantiate(prefab, pos, Quaternion.identity));
+        t.transform.parent = transform;
+        t.GetComponent<stats>().MobID = MobID;
+        t.GetComponent<stats>().type = type;
+       // t.tag = "mob";
 
     }
 

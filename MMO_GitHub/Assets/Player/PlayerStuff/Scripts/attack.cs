@@ -14,6 +14,8 @@ public class attack : MonoBehaviour
 
     public static bool stoppAttack;
 
+    Vector3 targetPoint;
+    Quaternion targetRotation;
 
     #region InventoryBoni
     int inventoryCount = 0;
@@ -37,6 +39,12 @@ public class attack : MonoBehaviour
     {
         GetInvBoni();
         timer += Time.deltaTime;
+        if(selectTarget.currentTarget != null)
+        {
+            LookAt(selectTarget.currentTarget.transform);
+
+        }
+
         if (selectTarget.distance < 3.2f)
         {
             if (selectTarget.currentTarget != null)
@@ -50,7 +58,7 @@ public class attack : MonoBehaviour
                             {
                             stoppAttack = false;
                                 Transform target = selectTarget.currentTarget.transform;
-                                transform.LookAt(target);
+                                transform.LookAt(target, Vector3.left);
 
 
                                 Attack(selectTarget.currentTarget);
@@ -66,7 +74,7 @@ public class attack : MonoBehaviour
 
                             //schaut auf das andere objekt
                             Transform target = selectTarget.currentTarget.transform;
-                                transform.LookAt(target);
+                            //  transform.LookAt(target);
                                 //greift das ausgewählte objekt an
                                 Attack(selectTarget.currentTarget);
                                 //setzt den Timer zurück
@@ -133,9 +141,10 @@ public class attack : MonoBehaviour
                     ClientTCP.PACKAGE_SDealDamage(damage,obj.name);
                     Debug.Log("try to attack");
                 }
-                else
+                else if(obj.tag == "mob" || obj.tag == "enemy")
                 {
-                    obj.GetComponent<stats>().changeHealth(damage);
+                    ClientTCP.PACKAGE_SDealDamageTo(damage, obj.GetComponent<stats>().type, obj.GetComponent<stats>().MobID);
+                    //obj.GetComponent<stats>().changeHealth(damage);
 
                 }
 
@@ -176,4 +185,38 @@ public class attack : MonoBehaviour
         }
 
     }
+    void LookAt(Transform target_)
+    {
+        transform.LookAt(target_);
+        
+    }
+    void AttackMob(GameObject obj)
+    {
+        try
+        {
+            if (obj != null)
+            {
+                if (obj.tag == "mob" )
+                {
+
+                    ClientTCP.PACKAGE_SDealDamageTo(damage, obj.GetComponent<stats>().type, obj.GetComponent<stats>().MobID);
+                    Debug.Log("try to attack");
+                }
+                else
+                {
+                    obj.GetComponent<stats>().changeHealth(damage);
+
+                }
+
+            }
+
+        }
+        catch (System.Exception)
+        {
+
+            throw;
+        }
+
+    }
+
 }

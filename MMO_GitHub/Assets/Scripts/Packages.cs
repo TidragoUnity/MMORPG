@@ -12,7 +12,8 @@
     SSendDrops,
     SUpdateDestination,
     STakeDamage,
-
+    SSpawnMob,
+    SDamageMob,
 }
 
 public enum ClientPackages
@@ -25,5 +26,6 @@ public enum ClientPackages
     CMobDropName,
     CSendDestination,
     CDealDamage,
+    CDealDamageTo,
 
 }

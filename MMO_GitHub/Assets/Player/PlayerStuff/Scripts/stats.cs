@@ -17,6 +17,8 @@ public class stats : MonoBehaviour
     [SerializeField]
     private int dropHonor;
 
+    public int type;
+    public int MobID;
     float timer;
     float timerMax;
 

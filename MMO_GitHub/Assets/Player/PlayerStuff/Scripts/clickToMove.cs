@@ -74,12 +74,19 @@ public class clickToMove : MonoBehaviour
             }
         }
         anim.SetBool("IsWalking", true);
+        anim.SetBool("IsRunning", true);
+        mNavMeshAgent.speed = 6.0f;
         follow = true;
         // stoppt den Agent
         if (mNavMeshAgent.remainingDistance <= mNavMeshAgent.stoppingDistance)
         {
 
             anim.SetBool("IsWalking", false);
+            anim.SetBool("IsRunning", false);
+            mNavMeshAgent.speed = 2.0f;
+
+
+
             follow = false;
         }
         else
