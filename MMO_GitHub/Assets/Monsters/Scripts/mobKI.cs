@@ -80,6 +80,7 @@ public class mobKI : MonoBehaviour
             if(hitColliders[i].tag == "Player")
             {
                 target = hitColliders[i].gameObject;
+                ClientTCP.PACKAGE_MobMove(GetComponent<stats>().type, GetComponent<stats>().MobID);
             }
            i++;
       }
@@ -98,7 +99,9 @@ public class mobKI : MonoBehaviour
                     transform.LookAt(target.transform);
                     resetAnimation();
                     anim.SetBool("attack", true);
-                        target.GetComponent<stats>().takeDMG(dmg);
+                    //    target.GetComponent<stats>().takeDMG(dmg);
+                    ClientTCP.PACKAGE_DealDamage(dmg, target.name);
+                    Debug.Log(target.name);
                         timer = 0;
                     }
 
@@ -133,5 +136,11 @@ public class mobKI : MonoBehaviour
         anim.SetBool("attack", false);
     }
 
+    public void selectTarget(string username)
+    {
+        GameObject newtarget = GameObject.Find(username);
+        target = newtarget;
+        Debug.Log("I have a new target!!!");
+    }
 
 }

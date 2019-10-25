@@ -13,7 +13,7 @@ public class ClientManager : MonoBehaviour
         // Wurde in Menu eingebaut
         /*
         UnityThread.initUnityThread();
-
+#
         ClientHandleData.InitializePacketListener();
         ClientTCP.InitializeClientSocket(ipAddress, port);
         */

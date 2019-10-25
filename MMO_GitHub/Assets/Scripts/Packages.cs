@@ -14,6 +14,7 @@
     STakeDamage,
     SSpawnMob,
     SDamageMob,
+    SUpdateMobTarget,
 }
 
 public enum ClientPackages
@@ -27,5 +28,6 @@ public enum ClientPackages
     CSendDestination,
     CDealDamage,
     CDealDamageTo,
+    CMobMove,
 
 }

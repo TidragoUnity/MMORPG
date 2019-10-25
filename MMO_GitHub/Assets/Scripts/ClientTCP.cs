@@ -134,7 +134,7 @@ public class ClientTCP
 
     }
 
-    public static void PACKAGE_SDealDamage(int damage, string username)
+    public static void PACKAGE_DealDamage(int damage, string username)
     {
         ByteBuffer buffer = new ByteBuffer();
         buffer.WriteInteger((int)ClientPackages.CDealDamage);
@@ -143,15 +143,28 @@ public class ClientTCP
         SendData(buffer.ToArray());
         buffer.Dispose();
     }
-    public static void PACKAGE_SDealDamageTo(int damage, int mobNameID, int mobID)
+    public static void PACKAGE_DealDamageTo(int damage, int mobNameID, int mobID)
     {
         ByteBuffer buffer = new ByteBuffer();
         buffer.WriteInteger((int)ClientPackages.CDealDamageTo);
+
         buffer.WriteInteger(damage);
         buffer.WriteInteger(mobNameID);
         buffer.WriteInteger(mobID);
         SendData(buffer.ToArray());
         buffer.Dispose();
     }
+    public static void PACKAGE_MobMove(int mobNameID, int mobID)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteInteger((int)ClientPackages.CMobMove);
+
+        buffer.WriteInteger(mobNameID);
+        buffer.WriteInteger(mobID);
+        SendData(buffer.ToArray());
+        buffer.Dispose();
+        Debug.Log("New Target ");
+    }
+
 
 }

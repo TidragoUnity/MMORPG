@@ -74,6 +74,7 @@ public class clickToMove : MonoBehaviour
             }
         }
         anim.SetBool("IsWalking", true);
+        mNavMeshAgent.speed = 2.0f;
         anim.SetBool("IsRunning", true);
         mNavMeshAgent.speed = 6.0f;
         follow = true;
@@ -83,7 +84,7 @@ public class clickToMove : MonoBehaviour
 
             anim.SetBool("IsWalking", false);
             anim.SetBool("IsRunning", false);
-            mNavMeshAgent.speed = 2.0f;
+            mNavMeshAgent.speed = 0.0f;
 
 
 

@@ -138,12 +138,12 @@ public class attack : MonoBehaviour
             {
                 if (obj.tag =="otherPlayers")
                 {
-                    ClientTCP.PACKAGE_SDealDamage(damage,obj.name);
+                    ClientTCP.PACKAGE_DealDamage(damage,obj.name);
                     Debug.Log("try to attack");
                 }
                 else if(obj.tag == "mob" || obj.tag == "enemy")
                 {
-                    ClientTCP.PACKAGE_SDealDamageTo(damage, obj.GetComponent<stats>().type, obj.GetComponent<stats>().MobID);
+                    ClientTCP.PACKAGE_DealDamageTo(damage, obj.GetComponent<stats>().type, obj.GetComponent<stats>().MobID);
                     //obj.GetComponent<stats>().changeHealth(damage);
 
                 }
@@ -199,7 +199,7 @@ public class attack : MonoBehaviour
                 if (obj.tag == "mob" )
                 {
 
-                    ClientTCP.PACKAGE_SDealDamageTo(damage, obj.GetComponent<stats>().type, obj.GetComponent<stats>().MobID);
+                    ClientTCP.PACKAGE_DealDamageTo(damage, obj.GetComponent<stats>().type, obj.GetComponent<stats>().MobID);
                     Debug.Log("try to attack");
                 }
                 else
