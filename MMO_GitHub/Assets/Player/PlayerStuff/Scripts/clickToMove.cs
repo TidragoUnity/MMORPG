@@ -25,6 +25,7 @@ public class clickToMove : MonoBehaviour
     {
         mNavMeshAgent = GetComponent<NavMeshAgent>();
         anim = GetComponent<Animator>();
+        cam = GameObject.Find("BetterCamera").GetComponent<Camera>();
     }
 
     // Update is called once per frame
@@ -74,7 +75,7 @@ public class clickToMove : MonoBehaviour
             }
         }
         anim.SetBool("IsWalking", true);
-        mNavMeshAgent.speed = 2.0f;
+        mNavMeshAgent.speed = 4.0f;
         anim.SetBool("IsRunning", true);
         mNavMeshAgent.speed = 6.0f;
         follow = true;

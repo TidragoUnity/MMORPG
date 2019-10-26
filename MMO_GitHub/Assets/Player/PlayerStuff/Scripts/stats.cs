@@ -133,9 +133,12 @@ public class stats : MonoBehaviour
         Health -= value;
     }
 
+    public void setHealth(int value)
+    {
+        Health = value;
+    }
 
-
-#region Drops
+    #region Drops
 
     void mobDrop(string mobname)
     {

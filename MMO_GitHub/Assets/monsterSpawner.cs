@@ -65,6 +65,20 @@ public class monsterSpawner : MonoBehaviour
        // t.tag = "mob";
 
     }
+    public void SpawnMob(float x, float y, float z, int MobID, int type, int currentHealth)
+    {
+        Vector3 pos = new Vector3(x, y, z);
+
+        // Instantiate(prefab, pos, Quaternion.identity);
+        GameObject t = ((GameObject)Instantiate(prefab, pos, Quaternion.identity));
+        t.transform.parent = transform;
+        t.GetComponent<stats>().MobID = MobID;
+        t.GetComponent<stats>().type = type;
+        t.GetComponent<stats>().setHealth(currentHealth);
+        // t.tag = "mob";
+
+    }
+
 
     private void OnDrawGizmosSelected()
     {

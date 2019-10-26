@@ -157,7 +157,7 @@ public class ClientTCP
     public static void PACKAGE_MobMove(int mobNameID, int mobID)
     {
         ByteBuffer buffer = new ByteBuffer();
-        buffer.WriteInteger((int)ClientPackages.CMobMove);
+        buffer.WriteInteger((int)ClientPackages.CMobTarget);
 
         buffer.WriteInteger(mobNameID);
         buffer.WriteInteger(mobID);
@@ -165,6 +165,7 @@ public class ClientTCP
         buffer.Dispose();
         Debug.Log("New Target ");
     }
+
 
 
 }

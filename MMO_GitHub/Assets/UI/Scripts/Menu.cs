@@ -6,7 +6,7 @@ public class Menu : MonoBehaviour
 {
     public GameObject otherInterfaces;
     public GameObject clientManager;
-    private string ipAddress = "192.168.178.25";
+    private string ipAddress = "188.194.208.240";
     private int port = 5555;
 
     // Start is called before the first frame update
@@ -23,6 +23,7 @@ public class Menu : MonoBehaviour
 
     public void Connect()
     {
+
         GameObject menuPanel = GameObject.Find("MenuPanel");
 
         otherInterfaces.SetActive(true);
@@ -31,6 +32,7 @@ public class Menu : MonoBehaviour
         UnityThread.initUnityThread();
         ClientHandleData.InitializePacketListener();
         ClientTCP.InitializeClientSocket(ipAddress, port);
+        BetterCamera.changeCam = true;
     }
 
 

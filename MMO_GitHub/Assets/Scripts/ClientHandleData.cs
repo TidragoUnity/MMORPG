@@ -46,7 +46,7 @@ public class ClientHandleData
         packetListener.Add((int)ServerPackages.SSpawnMob, HandleSpawnMob);
         packetListener.Add((int)ServerPackages.SDamageMob, HandleDamageMob);
         packetListener.Add((int)ServerPackages.SUpdateMobTarget, HandleMobMove);
-
+        packetListener.Add((int)ServerPackages.SSpawnMobFor, HandleSpawnMobFor);
 
         informationOutput = GameObject.Find("InformationOutput").GetComponent<Text>();
         playerGold        = GameObject.Find("Canvas/OtherInterfaces/PlayerData/Gold").GetComponent<Text>();
@@ -465,7 +465,38 @@ public class ClientHandleData
         buffer.Dispose();
 
     }
+    private static void HandleSpawnMobFor(byte[] data)
+    {
+        ByteBuffer buffer = new ByteBuffer();
+        buffer.WriteBytes(data);
+        int packageID = buffer.ReadInteger();
 
+        int mobNameID = buffer.ReadInteger();
+        int mobID = buffer.ReadInteger();
+        float x = buffer.ReadFloat();
+        float y = buffer.ReadFloat();
+        float z = buffer.ReadFloat();
+        int mobHealth = buffer.ReadInteger();
+
+
+        if ((int)Mobname.GhostTiger == mobNameID)
+        {
+            Debug.Log("Trying to spawn a mob");
+            monsterSpawner mSpawn = GameObject.Find("GhostTiger").GetComponent<monsterSpawner>();
+            mSpawn.SpawnMob(x, y, z, mobID, (int)Mobname.GhostTiger, mobHealth);
+            Debug.Log(x + " " + y + " " + z);
+        }
+        else if ((int)Mobname.SpiderGreenMesh == mobNameID)
+        {
+
+        }
+        else if ((int)Mobname.TrollGiant == mobNameID)
+        {
+
+        }
+
+        buffer.Dispose();
+    }
     #endregion
 
 }
