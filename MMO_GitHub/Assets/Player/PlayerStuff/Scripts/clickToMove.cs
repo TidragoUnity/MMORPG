@@ -18,7 +18,7 @@ public class clickToMove : MonoBehaviour
 
     static bool follow;
     float time;
-    float waitTime =4;
+    float waitTime =0;
 
     // Start is called before the first frame update
     void Start()
@@ -127,6 +127,12 @@ public class clickToMove : MonoBehaviour
            
         }
 
+    }
+
+    public void resetDestination()
+    {
+        mNavMeshAgent.destination = transform.position;
+        gameObject.GetComponent<selectTarget>().resetTarget();
     }
 
 }

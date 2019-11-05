@@ -7,6 +7,9 @@ public enum Mobname
     GhostTiger = 0,
     SpiderGreenMesh,
     TrollGiant,
+    Magmadar,
+    LastMob,
+
 
 }
 
@@ -19,20 +22,12 @@ public class monsterSpawner : MonoBehaviour
     public Vector3 size;
     public Color color;
 
-
-
     int mobCount;
-    // Start is called before the first frame update
-    void Start()
-    {
-        
-    }
 
     // Update is called once per frame
     void Update()
     {
         if (Input.GetKey(KeyCode.Q)) Spawn(); return;
-
     }
     private void FixedUpdate()
     {
@@ -65,7 +60,7 @@ public class monsterSpawner : MonoBehaviour
        // t.tag = "mob";
 
     }
-    public void SpawnMob(float x, float y, float z, int MobID, int type, int currentHealth)
+    public void SpawnMob(float x, float y, float z, int MobID, int type, int Health)
     {
         Vector3 pos = new Vector3(x, y, z);
 
@@ -74,9 +69,10 @@ public class monsterSpawner : MonoBehaviour
         t.transform.parent = transform;
         t.GetComponent<stats>().MobID = MobID;
         t.GetComponent<stats>().type = type;
-        t.GetComponent<stats>().setHealth(currentHealth);
+        t.GetComponent<stats>().setMaxHealth(Health);
+        t.GetComponent<stats>().setHealth(Health);
         // t.tag = "mob";
-
+        Debug.Log("Spawnig " + t.name + " with hp: " + Health +" " +t.GetComponent<stats>().GetHealth());
     }
 
 

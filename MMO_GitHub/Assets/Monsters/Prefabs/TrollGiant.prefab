@@ -204,6 +204,8 @@ GameObject:
   - component: {fileID: 6511117283197820562}
   - component: {fileID: 4345267465083293000}
   - component: {fileID: -1711425193855196970}
+  - component: {fileID: 4841986573472711613}
+  - component: {fileID: 7493855428598128682}
   m_Layer: 0
   m_Name: TrollGiant
   m_TagString: enemy
@@ -225,6 +227,7 @@ Transform:
   - {fileID: 4000012073207638}
   - {fileID: 4000012982119506}
   - {fileID: 4000012197641914}
+  - {fileID: 4648243729432607316}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
@@ -256,7 +259,7 @@ MeshCollider:
   m_GameObject: {fileID: 1000010759127040}
   m_Material: {fileID: 0}
   m_IsTrigger: 1
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Convex: 1
   m_CookingOptions: 14
@@ -268,7 +271,7 @@ Animation:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000010759127040}
-  m_Enabled: 1
+  m_Enabled: 0
   serializedVersion: 3
   m_Animation: {fileID: 7400000, guid: 0d4e8a0ef50a3404bbc6b279bfdddaca, type: 2}
   m_Animations: []
@@ -288,9 +291,9 @@ Rigidbody:
   m_Drag: 0
   m_AngularDrag: 0.05
   m_UseGravity: 1
-  m_IsKinematic: 0
+  m_IsKinematic: 1
   m_Interpolate: 0
-  m_Constraints: 80
+  m_Constraints: 0
   m_CollisionDetection: 0
 --- !u!136 &6511117283197820562
 CapsuleCollider:
@@ -333,11 +336,57 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Health: 0
-  MaxHealth: 130
+  MaxHealth: 450
   dropXP: 0
   dropGold: 0
   dropHonor: 0
+  type: 0
+  MobID: 0
   inventory: {fileID: 11400000, guid: 7f1a58ce9b9ecec498b144f5a7ceca81, type: 2}
+--- !u!114 &4841986573472711613
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010759127040}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 34c2893cc5510a04bb8e7e462e080843, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  anim: {fileID: 0}
+  distance: 0
+  dist: 0
+  dmg: 10
+  mobUi: {fileID: 993677718115153154, guid: f59e6ce767516244b8c12fffb67cbbff, type: 3}
+  mobUiPro: {fileID: 4453084472407833228, guid: 6d6e6c26206f02d4090b33491d3e8a7b,
+    type: 3}
+  nameTag: {fileID: 4648243729432607316}
+  timer: 0
+  UiRange: 60
+--- !u!195 &7493855428598128682
+NavMeshAgent:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000010759127040}
+  m_Enabled: 1
+  m_AgentTypeID: 0
+  m_Radius: 0.5
+  m_Speed: 1.8
+  m_Acceleration: 217.66
+  avoidancePriority: 50
+  m_AngularSpeed: 120
+  m_StoppingDistance: 0
+  m_AutoTraverseOffMeshLink: 1
+  m_AutoBraking: 1
+  m_AutoRepath: 1
+  m_Height: 2
+  m_BaseOffset: 0
+  m_WalkableMask: 4294967295
+  m_ObstacleAvoidanceType: 4
 --- !u!1 &1000010801686436
 GameObject:
   m_ObjectHideFlags: 0
@@ -1076,7 +1125,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1000012596960988}
   m_LocalRotation: {x: -0.7071068, y: -0, z: -0, w: 0.7071068}
-  m_LocalPosition: {x: 0, y: 1.726, z: 0}
+  m_LocalPosition: {x: 0, y: -2, z: 0}
   m_LocalScale: {x: 1, y: 1.0000005, z: 1.0000005}
   m_Children: []
   m_Father: {fileID: 4000013930652492}
@@ -1787,4 +1836,34 @@ Transform:
   - {fileID: 4000011815596806}
   m_Father: {fileID: 4000010434472924}
   m_RootOrder: 0
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &6938039793617285679
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 4648243729432607316}
+  m_Layer: 0
+  m_Name: NameTag
+  m_TagString: Untagged
+  m_Icon: {fileID: 8418204508859773708, guid: 0000000000000000d000000000000000, type: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &4648243729432607316
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6938039793617285679}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 2.11, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 4000013930652492}
+  m_RootOrder: 3
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}

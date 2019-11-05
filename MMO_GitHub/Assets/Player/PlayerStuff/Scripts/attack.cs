@@ -144,7 +144,8 @@ public class attack : MonoBehaviour
                 else if(obj.tag == "mob" || obj.tag == "enemy")
                 {
                     ClientTCP.PACKAGE_DealDamageTo(damage, obj.GetComponent<stats>().type, obj.GetComponent<stats>().MobID);
-                    //obj.GetComponent<stats>().changeHealth(damage);
+                    Debug.Log("try to attack mob");
+
 
                 }
 

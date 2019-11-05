@@ -113,10 +113,7 @@ public  class selectTarget : MonoBehaviour
         }
         if (dead)
         {
-            target = null;
-            target_ = null;
-            currentTarget = null;
-            attack.nextOperationAtt = false;
+            resetTarget();
 
         }
 
@@ -140,5 +137,12 @@ public  class selectTarget : MonoBehaviour
 
         distance = Mathf.Sqrt((x2 * x2) + (y2 * y2) + (z2 * z2));
 
+    }
+    public void resetTarget()
+    {
+        target = null;
+        target_ = null;
+        currentTarget = null;
+        attack.nextOperationAtt = false;
     }
 }

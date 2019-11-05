@@ -71,7 +71,9 @@ public class stats : MonoBehaviour
             anim.SetBool("dead", true);
             Waited(50f);
             selectTarget.dead = true;
+            gameObject.GetComponent<mobKI>().deleteNameTag();
             GameObject.Destroy(gameObject);
+
 
         }
         UpdateHealthbar();
@@ -93,11 +95,6 @@ public class stats : MonoBehaviour
             }
         }
 
-    }
-
-    int GetHealth()
-    {
-        return Health;
     }
 
     public void changeHealth(int value)
@@ -132,10 +129,17 @@ public class stats : MonoBehaviour
     {
         Health -= value;
     }
-
+    public void setMaxHealth(int value)
+    {
+        MaxHealth = value;
+    }
     public void setHealth(int value)
     {
         Health = value;
+    }
+    public int GetHealth()
+    {
+        return Health;
     }
 
     #region Drops

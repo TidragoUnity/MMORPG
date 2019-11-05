@@ -355,19 +355,18 @@ public class ClientHandleData
         float y = buffer.ReadFloat();
         float z = buffer.ReadFloat();
         int MobID = buffer.ReadInteger();
-
-        if ((int)Mobname.GhostTiger == mobNameID)
+        int mobHealth = buffer.ReadInteger();
+        foreach (Mobname e in Enum.GetValues(typeof(Mobname)))
         {
-            monsterSpawner mSpawn = GameObject.Find("GhostTiger").GetComponent<monsterSpawner>();
-            mSpawn.SpawnMob(x, y, z, MobID, (int)Mobname.GhostTiger);
-            Debug.Log(x + " " + y + " " + z);
-        } else if ((int)Mobname.SpiderGreenMesh == mobNameID)
-        {
-
-        } else if ((int)Mobname.TrollGiant == mobNameID)
-        {
-
+            if((int)e == mobNameID)
+            {
+                monsterSpawner mSpawn = GameObject.Find(e.ToString()).GetComponent<monsterSpawner>();
+                mSpawn.SpawnMob(x, y, z, MobID, (int)e, mobHealth);
+                Debug.Log(x + " " + y + " " + z);
+            }
         }
+
+
 
         buffer.Dispose();
 
@@ -383,43 +382,24 @@ public class ClientHandleData
         int mobID = buffer.ReadInteger();
         string username = buffer.ReadString();
 
-
-             if ((int)Mobname.GhostTiger == mobNameID)
+        foreach (Mobname e in Enum.GetValues(typeof(Mobname)))
         {
-            monsterSpawner tSpawn = GameObject.Find("GhostTiger").GetComponent<monsterSpawner>();
-            Debug.Log("Found Transform");
-            stats[] tigerStats = tSpawn.GetComponentsInChildren<stats>();
-
-            foreach (stats child in tigerStats)
+            if ((int)e == mobNameID)
             {
-
-                if (child.MobID == mobID)
+                monsterSpawner tSpawn = GameObject.Find(e.ToString()).GetComponent<monsterSpawner>();
+                stats[] tigerStats = tSpawn.GetComponentsInChildren<stats>();
+                foreach (var child in tigerStats.Where(x => x.MobID == mobID))
                 {
-                    Debug.Log("found mob with ID: " + mobID+ "got Attacked by "+ username);
                     child.changeHealth(damage);
-
-
-                    #region AttackMobAnimation
                     GameObject player = GameObject.Find(username);
-                    if(player == null) { return; }
+                    if (player == null) { return; }
                     otherPlayers oP = player.GetComponent<otherPlayers>();
                     oP.AttackAnimation(child.gameObject);
-                    #endregion
-
-
                 }
             }
-            //                    obj.GetComponent<stats>().changeHealth(damage);
-
         }
-        else if ((int)Mobname.SpiderGreenMesh == mobNameID)
-        {
 
-        }
-        else if ((int)Mobname.TrollGiant == mobNameID)
-        {
-
-        }
+  
 
         buffer.Dispose();
 
@@ -479,20 +459,15 @@ public class ClientHandleData
         int mobHealth = buffer.ReadInteger();
 
 
-        if ((int)Mobname.GhostTiger == mobNameID)
-        {
-            Debug.Log("Trying to spawn a mob");
-            monsterSpawner mSpawn = GameObject.Find("GhostTiger").GetComponent<monsterSpawner>();
-            mSpawn.SpawnMob(x, y, z, mobID, (int)Mobname.GhostTiger, mobHealth);
-            Debug.Log(x + " " + y + " " + z);
-        }
-        else if ((int)Mobname.SpiderGreenMesh == mobNameID)
-        {
 
-        }
-        else if ((int)Mobname.TrollGiant == mobNameID)
+        foreach (Mobname e in Enum.GetValues(typeof(Mobname)))
         {
-
+            if ((int)e == mobNameID)
+            {
+                monsterSpawner mSpawn = GameObject.Find(e.ToString()).GetComponent<monsterSpawner>();
+                mSpawn.SpawnMob(x, y, z,mobID, (int)e, mobHealth);
+                Debug.Log(x + " " + y + " " + z);
+            }
         }
 
         buffer.Dispose();

@@ -5,9 +5,9 @@ using UnityEngine.AI;
 
 public class otherPlayers : MonoBehaviour
 {
-    static private NavMeshAgent mNavMeshAgent;
+    private NavMeshAgent mNavMeshAgent;
 
-    public  Animator anim;
+    public Animator anim;
     float timer = 0.0f;
     float waitTime = 2.4f;
 
@@ -34,7 +34,7 @@ public class otherPlayers : MonoBehaviour
     }
 
     private void MoveOtherPlayer()
-    {        
+    {
         mNavMeshAgent.stoppingDistance = 0.8f;
         //legt das Zeil fest wohin es geht
 
@@ -56,22 +56,18 @@ public class otherPlayers : MonoBehaviour
 
         }
     }
+    public void AttackAnimation(GameObject target)
+    {
 
-     public void AttackAnimation(GameObject target)
-     {
-
-            transform.LookAt(target.transform);
-            anim.SetBool("IsAttackingMob", true);
-            Debug.Log("Is Attacking the mob //" + transform.root.name);
-            timer = 0;
+        transform.LookAt(target.transform);
+        anim.SetBool("IsAttackingMob", true);
+        Debug.Log("Is Attacking the mob //" + transform.root.name);
+        timer = 0;
 
 
 
 
 
     }
-
-
-
 
 }
